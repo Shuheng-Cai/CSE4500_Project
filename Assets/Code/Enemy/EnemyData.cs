@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy")]
+[CreateAssetMenu(menuName = "Game/Enemy")]
 public class EnemyData : ScriptableObject
 {
     public int enemyID;
     public int speed;
-    public float maxLife;
+    public float maxHealth;
     public float damage;
     public GameObject enemyPrefab;
     public int baseWeight; // Control the weight to spawn;

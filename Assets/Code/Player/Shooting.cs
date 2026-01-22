@@ -9,6 +9,7 @@ public class Shooting : MonoBehaviour
     public float firingDelay;
 
     // Configuration
+    public float shootingSpeed;
 
     // Method
     void Start()
@@ -23,7 +24,7 @@ public class Shooting : MonoBehaviour
 
     IEnumerator Firing()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(shootingSpeed);
 
         FireProjectile(projectile);
 

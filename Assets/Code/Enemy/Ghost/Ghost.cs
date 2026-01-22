@@ -12,15 +12,6 @@ public class Ghost : Enemy
     private float timeOffset = 0;
 
     // Method
-    protected override void Move()
-    {
-        Vector3 direction = (target - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        Vector3 offsetDir = Quaternion.AngleAxis(angleOffset, Vector3.forward) * direction;
-
-        transform.position += offsetDir * speed * Time.deltaTime;
-    }
-
     void FixedUpdate()
     {
         timeOffset++;
@@ -36,6 +27,15 @@ public class Ghost : Enemy
         }
     }
 
+    protected override void Move()
+    {
+        Vector3 direction = (target - transform.position).normalized;
+        Vector3 offsetDir = Quaternion.AngleAxis(angleOffset, Vector3.forward) * direction;
+
+        transform.position += offsetDir * speed * Time.deltaTime;
+    }
+
+    // Appear and Disappear
     public void Disappear()
     {
         GetComponent<BoxCollider2D>().enabled = false;
@@ -46,7 +46,6 @@ public class Ghost : Enemy
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    // Ghost disappear and appear.
     private IEnumerator DisappearRoutine()
     {
         Disappear();

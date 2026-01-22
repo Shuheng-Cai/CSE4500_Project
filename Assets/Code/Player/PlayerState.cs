@@ -19,15 +19,19 @@ public class PlayerState : MonoBehaviour
 
     void Update()
     {
-        Died();
+        
     }
 
     public void TakeDamage(float damage)
     {
         currentHealthPoint -= damage;
+        if(currentHealthPoint < 0)
+        {
+            Die();
+        }
     }
 
-    private void Died()
+    private void Die()
     {
         Destroy(gameObject);
     }
