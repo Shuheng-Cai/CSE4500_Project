@@ -7,11 +7,16 @@ public class Ghost : Enemy
     // State Tracking
     public float appearTime = 3f;
     public float disappearTime = 0.3f;
-    private bool canDisappear = true;
     private float angleOffset = 30f;
     private float timeOffset = 0;
 
     // Method
+
+    void Start()
+    {
+        StartCoroutine(DisappearRoutine());
+    }
+
     void FixedUpdate()
     {
         timeOffset++;
@@ -19,11 +24,6 @@ public class Ghost : Enemy
         {
             timeOffset = 0;
             angleOffset = angleOffset * -1;
-        }
-
-        if (canDisappear)
-        {
-            StartCoroutine(DisappearRoutine());
         }
     }
 
@@ -38,23 +38,21 @@ public class Ghost : Enemy
     // Appear and Disappear
     public void Disappear()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
     }
 
     public void Appear()
     {
-        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
     private IEnumerator DisappearRoutine()
     {
         Disappear();
         animator.SetTrigger("disappear");
-        canDisappear = false;
         yield return new WaitForSeconds(disappearTime);
         Appear();
-        animator.SetTrigger("appear");
         yield return new WaitForSeconds(appearTime);
-        canDisappear = true;
+        StartCoroutine(DisappearRoutine());
     }
 }

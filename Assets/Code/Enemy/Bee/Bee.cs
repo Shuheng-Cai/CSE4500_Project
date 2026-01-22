@@ -16,16 +16,14 @@ public class Bee : Enemy
     public GameObject bulletPrefabs;
 
     // Configuration
-    private bool canShoot = true;
+
+    // State Tracking
 
     // Method
-    void FixedUpdate()
+
+    void Start()
     {
-        if (canShoot)
-        {
-            StartCoroutine(Shooting());
-        }
-        
+        StartCoroutine(Shooting());
     }
 
     protected override void Move()
@@ -44,11 +42,11 @@ public class Bee : Enemy
     IEnumerator Shooting()
     {
         animator.SetTrigger("isAttack");
-        canShoot = false;
         yield return new WaitForSeconds(4f);
-        canShoot = true;
+        StartCoroutine(Shooting());
     }
     
+    // Use in Animation Event - Bee - Attack
     public void Shoot()
     {
         Quaternion bulletAngle = Quaternion.Euler(0f, 0f, transform.eulerAngles.z + 90f);

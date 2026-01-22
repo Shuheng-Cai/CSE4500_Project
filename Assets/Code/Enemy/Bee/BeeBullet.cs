@@ -3,8 +3,6 @@ using UnityEngine;
 public class BeeBullet : MonoBehaviour
 {
     // Outlets
-    private Vector3 moveDirection;
-    Rigidbody2D _rb;
 
     // Configuration
     public float lifeTime;
@@ -16,10 +14,10 @@ public class BeeBullet : MonoBehaviour
     {
         this.damage = damage;
     }
+
     void Start()
     {
         Destroy(gameObject, lifeTime);
-        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -42,12 +40,7 @@ public class BeeBullet : MonoBehaviour
                 player.TakeDamage(damage);
             }
 
-            OnHitEnemy(collision);
+            Destroy(gameObject);
         }
-    }
-
-    protected virtual void OnHitEnemy(Collider2D other)
-    {
-        Destroy(gameObject);
     }
 }

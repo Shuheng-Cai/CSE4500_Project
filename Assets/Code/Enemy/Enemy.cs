@@ -18,13 +18,15 @@ public abstract class Enemy : MonoBehaviour
     public Rigidbody2D _rb;
 
     // Configuration
-    public float currentHealth;
-    [HideInInspector] public float speed;
+    [HideInInspector] public float speed;   // Set in ScriptObject
     [HideInInspector] public float damage;
 
-    
+    // State Tracking
+    public bool isMove;
+    public float currentHealth;
+
     // Mathod
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -32,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
         currentHealth = enemyData.maxHealth;
         speed = enemyData.speed;
         animator = transform.GetComponent<Animator>();
+        animator.SetBool("isMove", true);
     }
 
     protected virtual void Update()
@@ -44,6 +47,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth = currentHealth - damage;
+        animator.SetTrigger("isHit");
         if(currentHealth < 0)
         {
             Die();
@@ -81,12 +85,12 @@ public abstract class Enemy : MonoBehaviour
     {
         if(transform.position.x - target.x <= 0)
         {
-            sprite.flipX = false;
+            sprite.flipX = true;
         }
         
         else
         {
-            sprite.flipX = true;
+            sprite.flipX = false;
         }
     }
 }
