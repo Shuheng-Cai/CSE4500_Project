@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
     // Outlets
     Rigidbody2D _rb;
+    public Tilemap _tilemap;
+    public Vector3 testCell;
 
     // Configuration
     public float speed;
-
 
     // Method
     void Start()
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        testCell = WorldToCellPosition();
     }
 
     // Control player to move
@@ -44,5 +47,13 @@ public class PlayerController : MonoBehaviour
         {
             _rb.AddForce(Vector2.down * speed * Time.deltaTime, ForceMode2D.Impulse);
         }
+    }
+
+    // Get the Tilemap position
+    public Vector3 WorldToCellPosition()
+    {
+        Vector3 cellPos = _tilemap.WorldToCell(transform.position);
+
+        return cellPos;
     }
 }
