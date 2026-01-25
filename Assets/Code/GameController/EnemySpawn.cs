@@ -15,7 +15,7 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     // Outlets
-    public Camera cam = Camera.main;
+    public Camera cam;
     public List<GameObject> enemies = new List<GameObject>(); 
 
     // Configuration
