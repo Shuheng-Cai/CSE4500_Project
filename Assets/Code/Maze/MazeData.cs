@@ -23,8 +23,13 @@ public enum Wall
 
 public class MazeData
 {
+    // Outlets
+    public Vector2Int End;
+
+    // Configuration
     public int Width { get; }
     public int Height { get; }
+
     private Wall[,] walls;
 
     public MazeData(int w, int h)

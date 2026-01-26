@@ -1,15 +1,23 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
+using System.IO;
+using Unity.VisualScripting;
 
 public class MazeTilemapRenderer : MonoBehaviour
 {
     // Outlet
     public static MazeTilemapRenderer instance;
     public static MazeData mazeData { get; private set; }
+
+    
+    public int wallSize = 2;
+    public int pathSize = 1;
+
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private TileBase wallTile;
     [SerializeField] private TileBase pathTile;
+    [SerializeField] private TileBase endPointTile;
 
     // Configuration
     private static int seed = (int)GameContext_Seed.MazeSeed;
@@ -21,51 +29,67 @@ public class MazeTilemapRenderer : MonoBehaviour
     void Awake()
     {
         instance = this;
-        var generate = new DfsMazeGenerate();
-        mazeData = generate.Generate(20, 20, rng);
-        Render(mazeData);
     }
 
-    public void Render(MazeData maze)
+    void Start()
+    {
+        var dfsGenerate = new DfsMazeGenerate();
+        mazeData = dfsGenerate.Generate(20, 20, rng);
+
+        Render(mazeData, wallSize, pathSize);
+    }
+
+    // How thick the wall and path is.
+    public void Render(MazeData maze, int wallSize, int pathSize)
     {
         int w = maze.Width;
         int h = maze.Height;
+        int step = wallSize + pathSize;
 
-        int tw = 2 * w + 1;
-        int th = 2 * h + 1;
+        int tw = wallSize * 2 + (w - 1) * step + pathSize;
+        int th = wallSize * 2 + (h - 1) * step + pathSize;
 
         tilemap.ClearAllTiles();
 
-        // 1) File the wall
+        // all wall
         for (int x = 0; x < tw; x++)
-        {
             for (int y = 0; y < th; y++)
-            {
-                tilemap.SetTile(origin + new Vector3Int(x, y, 0), wallTile);
-            }
-        }
+                tilemap.SetTile(new Vector3Int(x, y, 0), wallTile);
 
-        // 2) Generate Maze
+        // Dig 
         for (int cx = 0; cx < w; cx++)
         {
             for (int cy = 0; cy < h; cy++)
             {
-                // cell center
-                SetPath(2 * cx + 1, 2 * cy + 1);
+                int x0 = wallSize + cx * step;
+                int y0 = wallSize + cy * step;
 
-                // Dig Up wall
-                if (!maze.HasWall(cx, cy, Wall.Up) && cy + 1 < h)
-                    SetPath(2 * cx + 1, 2 * cy + 2);
+                // cell
+                FillRect(tilemap, pathTile, x0, y0, pathSize, pathSize);
 
-                // Dig Right wall
-                if (!maze.HasWall(cx, cy, Wall.Right) && cx + 1 < w)
-                    SetPath(2 * cx + 2, 2 * cy + 1);
+                // Dig up
+                if (cy + 1 < h && !maze.HasWall(cx, cy, Wall.Up))
+                    FillRect(tilemap, pathTile, x0, y0 + pathSize, pathSize, wallSize);
+
+                // Dig down
+                if (cx + 1 < w && !maze.HasWall(cx, cy, Wall.Right))
+                    FillRect(tilemap, pathTile, x0 + pathSize, y0, wallSize, pathSize);
             }
         }
 
-        void SetPath(int x, int y)
-        {
-            tilemap.SetTile(origin + new Vector3Int(x, y, 0), pathTile);
-        }
+        // End Point
+        int ex0 = wallSize + maze.End.x * step;
+        int ey0 = wallSize + maze.End.y * step;
+        FillRect(tilemap, endPointTile, ex0, ey0, pathSize, pathSize);
+
+        NodeManager.instance.BuildNodeForTile(tilemap, pathTile, endPointTile, tw, th);
+    }
+
+    // Fill a rect area with x0, y0 the init position; w, h the width and height
+    void FillRect(Tilemap tm, TileBase tile, int x0, int y0, int w, int h)
+    {
+        for (int x = x0; x < x0 + w; x++)
+            for (int y = y0; y < y0 + h; y++)
+                tm.SetTile(new Vector3Int(x, y, 0), tile);
     }
 }

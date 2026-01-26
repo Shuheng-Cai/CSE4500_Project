@@ -22,7 +22,7 @@ public class TestAStar : MonoBehaviour
     void Start()
     {
         FindShortestPath();
-        transform.position = path[0].transform.position;
+        transform.position = path[0].position;
         rb = transform.GetComponent<Rigidbody2D>();
         StartCoroutine(Movement(0));
     }
@@ -43,7 +43,7 @@ public class TestAStar : MonoBehaviour
         while (i < path.Count - 1)
         {
             Node nextNode = path[i + 1];
-            Vector2 targetPos = nextNode.transform.position;
+            Vector2 targetPos = nextNode.position;
 
             // Move to the Next Node
             while (Vector2.Distance(transform.position, targetPos) > 0.01f)

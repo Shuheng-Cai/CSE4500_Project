@@ -14,6 +14,8 @@ using System.ComponentModel.Design.Serialization;
 
 public class DfsMazeGenerate
 {
+    // State Tracking
+    int maxDepth;
     private static readonly (int x, int y)[] dirs =
     {
         (0,1), (1,0), (0, -1), (-1, 0) 
@@ -21,6 +23,9 @@ public class DfsMazeGenerate
 
     public MazeData Generate(int w, int h, Random rng)
     {
+        // To generate the logical end and start
+        int[,] depth = new int[w, h];
+
         var maze = new MazeData(w, h);
         var visited = new bool[w,h];
         var stack = new Stack<(int x, int y)>();
@@ -40,6 +45,7 @@ public class DfsMazeGenerate
             {
                 int nx = cur.x + d.x;
                 int ny = cur.y + d.y;
+
                 if(nx>=0 && nx<w && ny>=0 && ny<h && !visited[nx, ny])
                 {
                     neighbors.Add((nx, ny));
@@ -53,6 +59,15 @@ public class DfsMazeGenerate
             }
 
             var next = neighbors[rng.Next(neighbors.Count)];
+
+            depth[next.x, next.y] = depth[cur.x, cur.y] + 1;
+
+            if(depth[next.x, next.y] > maxDepth)
+            {
+                maxDepth = depth[next.x, next.y];
+                maze.End = new (next.x, next.y);
+            }
+
             maze.RemoveWall(cur, next);
             countMaze++;
             visited[next.x, next.y] = true;

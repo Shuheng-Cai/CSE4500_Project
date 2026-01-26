@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMazeMove : MonoBehaviour
 {
 
     // Outlet
+    private MazeTilemapRenderer mazeTilemapRenderer;
     private MazeData maze;
+    public Tilemap tilemap;
 
     // Configuration
     private static readonly (int x, int y)[] dirs =
@@ -22,8 +25,9 @@ public class PlayerMazeMove : MonoBehaviour
     // Method
     void Start()
     {
-        transform.position = GridToWorld(new Vector2Int(0, 0));
+        mazeTilemapRenderer = MazeTilemapRenderer.instance;
         maze = MazeTilemapRenderer.mazeData;
+        transform.position = GridToWorld(new Vector2Int(0, 0));
     }
 
     void Update()
@@ -64,16 +68,19 @@ public class PlayerMazeMove : MonoBehaviour
 
     Vector3 GridToWorld(Vector2Int gp)
     {
-        return new Vector3(
-            gp.x * 2 + 1.5f,
-            gp.y * 2 + 1.5f,
-            0
-        );
+        int step = mazeTilemapRenderer.wallSize + mazeTilemapRenderer.pathSize;
+        int x0 = mazeTilemapRenderer.wallSize + gp.x * step;
+        int y0 = mazeTilemapRenderer.wallSize + gp.y * step;
+
+        // center cell
+        int centerOffset = mazeTilemapRenderer.pathSize / 2; // pathSize=1 ->0, =2->1, =3->1
+        var cellPos = new Vector3Int(x0 + centerOffset, y0 + centerOffset, 0);
+
+        return tilemap.GetCellCenterWorld(cellPos);
     }
 
     IEnumerator MoveToWorldPosition(Vector2Int targetGrid)
     {
-        Debug.Log(1);
         Vector3 start = transform.position;
         Vector3 end = GridToWorld(targetGrid);
 

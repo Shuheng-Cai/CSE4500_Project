@@ -18,13 +18,13 @@ public class AStarManager : MonoBehaviour
     {
         List<Node> openSet = new List<Node>();
 
-        foreach(var n in FindObjectsByType<Node>(FindObjectsSortMode.None))
+        foreach(var n in NodeManager.instance.allNodes)
         {
             n.gScore = float.MaxValue;
         }
 
         start.gScore = 0;
-        start.hScore = Vector2.Distance(start.transform.position, end.transform.position);
+        start.hScore = Vector2.Distance(start.position, end.position);
         openSet.Add(start);
         int FLowest = 0;
     
@@ -51,12 +51,12 @@ public class AStarManager : MonoBehaviour
                 if(n.gScore  > currentNode.gScore + n.penalty)
                 {
                     n.cameFrom = currentNode;
-                    n.gScore = currentNode.gScore + Vector2.Distance(currentNode.transform.position, n.transform.position) + n.penalty;
+                    n.gScore = currentNode.gScore + Vector2.Distance(currentNode.position, n.position) + n.penalty;
                     if (!openSet.Contains(n))
                     {
                         n.cameFrom = currentNode;
-                        n.gScore = currentNode.gScore + n.penalty + Vector2.Distance(currentNode.transform.position, n.transform.position);
-                        n.hScore = Vector2.Distance(n.transform.position, end.transform.position);
+                        n.gScore = currentNode.gScore + n.penalty + Vector2.Distance(currentNode.position, n.position);
+                        n.hScore = Vector2.Distance(n.position, end.position);
                         openSet.Add(n);
                     }
                 }
