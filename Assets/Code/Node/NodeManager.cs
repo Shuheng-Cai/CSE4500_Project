@@ -2,22 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class NodeManager : MonoBehaviour
+public class NodeManager
 {
-    public static NodeManager instance;
-
     public List<Node> allNodes = new List<Node>();
-    private Dictionary<Vector3Int, Node> nodeMap = new Dictionary<Vector3Int, Node>();
+    public Dictionary<Vector3Int, Node> nodeMap = new Dictionary<Vector3Int, Node>();
 
     private static readonly Vector3Int[] dirs =
     {
         Vector3Int.up, Vector3Int.right, Vector3Int.down, Vector3Int.left
     };
-
-    void Awake()
-    {
-        instance = this;
-    }
 
     public void BuildNodeForTile(Tilemap tilemap, TileBase pathTile, TileBase endTile, int tw, int th)
     {
@@ -40,6 +33,7 @@ public class NodeManager : MonoBehaviour
             var node = new Node();
             node.cell = cell;
             node.position = tilemap.GetCellCenterWorld(cell);
+            node.ID = allNodes.Count;
             node.connections = new List<Node>(4);
 
             nodeMap[cell] = node;
@@ -57,22 +51,6 @@ public class NodeManager : MonoBehaviour
                 var nb = cell + d;
                 if (nodeMap.TryGetValue(nb, out var nbNode))
                     node.connections.Add(nbNode);
-            }
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        if (allNodes == null) return;
-
-        Gizmos.color = Color.red;
-        foreach (var node in allNodes)
-        {
-            if (node?.connections == null) continue;
-            foreach (var c in node.connections)
-            {
-                if (c == null) continue;
-                Gizmos.DrawLine(node.position, c.position);
             }
         }
     }

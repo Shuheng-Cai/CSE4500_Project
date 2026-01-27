@@ -1,36 +1,21 @@
-// ==================================================
-// Module: GameContext
-// Purpose: Store all the seed.
-// Author: Shuheng
-// Date: 2026/1/16
-// Dependencies: MazeInit.
-// ==================================================
-
-using JetBrains.Annotations;
-using Unity.VisualScripting;
-using UnityEngine;
 using System;
 
-public class GameContext_Seed
+public static class GameContext_Seed
 {
-    public static long MazeSeed {get; private set; }
-    public static bool MazeInitialized {get; private set;}
+    public static int MazeSeed { get; private set; }
+    public static bool MazeInitialized { get; private set; }
 
-    // Method
-    public static void MazeInit(long seed)
+    public static void MazeInitFromLevel(MazeLevelController lc)
     {
-        if (!MazeInitialized)
-        {
-            MazeSeed = seed;
-            MazeInitialized = true;
-        }
+        if (MazeInitialized) return;
+        if (lc == null) throw new ArgumentNullException(nameof(lc));
+
+        MazeSeed = HashCode.Combine(lc.level, lc.playerClass, lc.difficulty, lc.runNumber);
+        MazeInitialized = true;
     }
 
-    public static void GetSeed(string UserInput = null)
+    public static void ResetSeed()
     {
-        if(!string.IsNullOrEmpty(UserInput))
-            MazeSeed = UserInput.GetHashCode();
-
-        MazeSeed = DateTime.UtcNow.Ticks;
+        MazeInitialized = false;
     }
 }

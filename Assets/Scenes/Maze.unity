@@ -122,6 +122,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &89418957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89418959}
+  - component: {fileID: 89418958}
+  m_Layer: 0
+  m_Name: AStar - Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &89418958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89418957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca2694dfc61456fbcb3f057a7f19ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &89418959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89418957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.9342885, y: 26.410414, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138277772
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,13 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6beb67772269a465aa3d87ae3e67e5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSize: 2
-  pathSize: 2
-  tilemap: {fileID: 192195787}
-  wallTile: {fileID: 11400000, guid: bf29a5d226c934449a0a9e66c2cff3aa, type: 2}
-  pathTile: {fileID: 11400000, guid: 41a022ca7fec64e74b4f5534d3623617, type: 2}
-  endPointTile: {fileID: 11400000, guid: a555fc10480784498b1db6fa1c882691, type: 2}
-  origin: {x: 0, y: 0, z: 0}
 --- !u!4 &138277774
 Transform:
   m_ObjectHideFlags: 0
@@ -324,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 192195787}
+  speed: 2
 --- !u!212 &291821355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -391,7 +429,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &484174811
+--- !u!1 &1113003909
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,37 +437,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 484174813}
-  - component: {fileID: 484174812}
+  - component: {fileID: 1113003911}
+  - component: {fileID: 1113003910}
   m_Layer: 0
-  m_Name: NodeManager
+  m_Name: LevelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &484174812
+--- !u!114 &1113003910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484174811}
+  m_GameObject: {fileID: 1113003909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0644b29824aa4694a9f348374d87759, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dcca3a122761164697ec8568463fd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &484174813
+  level: 1
+  playerClass: 5
+  difficulty: 6
+  runNumber: 7
+  origin: {x: 0, y: 0, z: 0}
+  tilemap: {fileID: 192195787}
+  wallTile: {fileID: 11400000, guid: 9ed4252d15b0147eabc80212356f7172, type: 2}
+  pathTile: {fileID: 11400000, guid: e50e4bcc850244240801c4f4a197483b, type: 2}
+  endPointTile: {fileID: 11400000, guid: 4eb982618423842aabdd661d9a7cce7d, type: 2}
+  wallSize: 2
+  pathSize: 1
+  mazeWidth: 20
+  mazeHeight: 20
+  mazeTilemapRenderer: {fileID: 138277773}
+  enemy: {fileID: 7513604330025622140, guid: ba8bc3326ae646245b5d5f6881dc2b6f, type: 3}
+--- !u!4 &1113003911
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484174811}
+  m_GameObject: {fileID: 1113003909}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.154924, y: 5.3867526, z: -9.933481}
+  m_LocalPosition: {x: 3.655179, y: 44.287643, z: -0.007516688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -595,4 +648,5 @@ SceneRoots:
   - {fileID: 138277774}
   - {fileID: 1566451744}
   - {fileID: 291821356}
-  - {fileID: 484174813}
+  - {fileID: 1113003911}
+  - {fileID: 89418959}

@@ -10,35 +10,38 @@ public class TestAStar : MonoBehaviour
     public Node start;
     public Node end;
     Rigidbody2D rb;
+    public AStarManager aStarManager;
 
     // State Tracking
     public List<Node> path = new List<Node>();
-
     public float moveSpeed;
-
     public bool cnaWalk = true;
+
 
     // Method
     void Start()
     {
-        FindShortestPath();
-        transform.position = path[0].position;
         rb = transform.GetComponent<Rigidbody2D>();
+        aStarManager = FindObjectOfType<AStarManager>();
+
+        end = GameObject.FindWithTag("Player").GetComponent<PlayerMazeMove>().currentNode;
+        FindShortestPath();
         StartCoroutine(Movement(0));
     }
 
     void Update()
     {
-        
+
     }
 
     private void FindShortestPath()
     {
-        path = AStarManager.instance.GeneratePath(start, end);
+        path = aStarManager.GeneratePath(start, end);
     }
 
     IEnumerator Movement(int i)
     {
+        Debug.Log(1);
         // Traversal the Paht
         while (i < path.Count - 1)
         {

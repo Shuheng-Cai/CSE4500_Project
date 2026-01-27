@@ -6,41 +6,9 @@ using Unity.VisualScripting;
 
 public class MazeTilemapRenderer : MonoBehaviour
 {
-    // Outlet
-    public static MazeTilemapRenderer instance;
-    public static MazeData mazeData { get; private set; }
-
-    
-    public int wallSize = 2;
-    public int pathSize = 1;
-
-    [SerializeField] private Tilemap tilemap;
-    [SerializeField] private TileBase wallTile;
-    [SerializeField] private TileBase pathTile;
-    [SerializeField] private TileBase endPointTile;
-
-    // Configuration
-    private static int seed = (int)GameContext_Seed.MazeSeed;
-    private System.Random rng = new System.Random(seed);
-    [SerializeField] private Vector3Int origin = Vector3Int.zero;
-
-
     // Method
-    void Awake()
-    {
-        instance = this;
-    }
-
-    void Start()
-    {
-        var dfsGenerate = new DfsMazeGenerate();
-        mazeData = dfsGenerate.Generate(20, 20, rng);
-
-        Render(mazeData, wallSize, pathSize);
-    }
-
     // How thick the wall and path is.
-    public void Render(MazeData maze, int wallSize, int pathSize)
+    public void Render(MazeData maze, int wallSize, int pathSize, Tilemap tilemap, TileBase wallTile, TileBase pathTile, TileBase endTile)
     {
         int w = maze.Width;
         int h = maze.Height;
@@ -80,9 +48,7 @@ public class MazeTilemapRenderer : MonoBehaviour
         // End Point
         int ex0 = wallSize + maze.End.x * step;
         int ey0 = wallSize + maze.End.y * step;
-        FillRect(tilemap, endPointTile, ex0, ey0, pathSize, pathSize);
-
-        NodeManager.instance.BuildNodeForTile(tilemap, pathTile, endPointTile, tw, th);
+        FillRect(tilemap, endTile, ex0, ey0, pathSize, pathSize);
     }
 
     // Fill a rect area with x0, y0 the init position; w, h the width and height

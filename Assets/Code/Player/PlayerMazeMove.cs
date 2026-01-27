@@ -7,7 +7,7 @@ public class PlayerMazeMove : MonoBehaviour
 {
 
     // Outlet
-    private MazeTilemapRenderer mazeTilemapRenderer;
+    private MazeLevelController mazeController;
     private MazeData maze;
     public Tilemap tilemap;
 
@@ -16,18 +16,25 @@ public class PlayerMazeMove : MonoBehaviour
     {
         (0,1), (1,0), (0, -1), (-1, 0) 
     };
+    public float speed;
 
     // State Tracking
-    public Vector2Int gridPosition { get; private set;}
-    Vector2Int dir = Vector2Int.zero;
+    public Vector3Int gridPosition { get; private set;}
+    Vector3Int dir = Vector3Int.zero;
     bool isMoving = false;
+    public Node currentNode;
+    private int currentNodeID;
+    private Dictionary<Vector3Int, Node> nodeMap;
 
     // Method
     void Start()
     {
-        mazeTilemapRenderer = MazeTilemapRenderer.instance;
-        maze = MazeTilemapRenderer.mazeData;
-        transform.position = GridToWorld(new Vector2Int(0, 0));
+        mazeController = MazeLevelController.instance;
+        maze = MazeLevelController.mazeData;
+        transform.position = MazeLevelController.instance.nodeManager.allNodes[0].position;
+        currentNode = MazeLevelController.instance.nodeManager.allNodes[0];
+        gridPosition = MazeLevelController.instance.nodeManager.allNodes[0].cell;
+        nodeMap = MazeLevelController.instance.nodeManager.nodeMap;
     }
 
     void Update()
@@ -37,57 +44,32 @@ public class PlayerMazeMove : MonoBehaviour
 
     void Movement()
     {
-        dir = new Vector2Int(0,0);
+        currentNode = MazeLevelController.instance.nodeManager.allNodes[currentNodeID];
+        dir = new Vector3Int(0,0);
 
-        if (Input.GetKey(KeyCode.W)) dir = Vector2Int.up;
-        if (Input.GetKey(KeyCode.S)) dir = Vector2Int.down;
-        if (Input.GetKey(KeyCode.A)) dir = Vector2Int.left;
-        if (Input.GetKey(KeyCode.D)) dir = Vector2Int.right;
+        if (Input.GetKey(KeyCode.W)) dir = Vector3Int.up;
+        if (Input.GetKey(KeyCode.S)) dir = Vector3Int.down;
+        if (Input.GetKey(KeyCode.A)) dir = Vector3Int.left;
+        if (Input.GetKey(KeyCode.D)) dir = Vector3Int.right;
 
-        if (dir != new Vector2Int(0,0) && CanMove(gridPosition, dir) && !isMoving)
+        Vector3Int next = currentNode.cell + dir;
+        if (dir != new Vector3Int(0,0) && nodeMap.ContainsKey(next) && !isMoving && currentNode.connections.Contains(nodeMap[next]))
         {
-            gridPosition += dir;
-            StartCoroutine(MoveToWorldPosition(gridPosition));
+            StartCoroutine(MoveToWorldPosition(next));
+            currentNodeID = nodeMap[next].ID;
+            Debug.Log(currentNodeID);
         }
-
     }
 
-    bool CanMove(Vector2Int from, Vector2Int dir)
-    {
-        if (dir == Vector2Int.up)
-            return !maze.HasWall(from.x, from.y, Wall.Up);
-        if (dir == Vector2Int.down)
-            return !maze.HasWall(from.x, from.y, Wall.Down);
-        if (dir == Vector2Int.left)
-            return !maze.HasWall(from.x, from.y, Wall.Left);
-        if (dir == Vector2Int.right)
-            return !maze.HasWall(from.x, from.y, Wall.Right);
-
-        return false;
-    }
-
-    Vector3 GridToWorld(Vector2Int gp)
-    {
-        int step = mazeTilemapRenderer.wallSize + mazeTilemapRenderer.pathSize;
-        int x0 = mazeTilemapRenderer.wallSize + gp.x * step;
-        int y0 = mazeTilemapRenderer.wallSize + gp.y * step;
-
-        // center cell
-        int centerOffset = mazeTilemapRenderer.pathSize / 2; // pathSize=1 ->0, =2->1, =3->1
-        var cellPos = new Vector3Int(x0 + centerOffset, y0 + centerOffset, 0);
-
-        return tilemap.GetCellCenterWorld(cellPos);
-    }
-
-    IEnumerator MoveToWorldPosition(Vector2Int targetGrid)
+    IEnumerator MoveToWorldPosition(Vector3Int targetGrid)
     {
         Vector3 start = transform.position;
-        Vector3 end = GridToWorld(targetGrid);
+        Vector3 end = nodeMap[targetGrid].position;
 
         isMoving = true;
 
         float t = 0f;
-        float duration = 0.15f;
+        float duration = 1 / speed;
 
         while (t < 1f)
         {

@@ -13,6 +13,7 @@ public class Node
     public Node cameFrom;
     public List<Node> connections;
     public Vector3Int cell;
+    public int ID;
     public Vector3 position;
 
     public float FScore()
