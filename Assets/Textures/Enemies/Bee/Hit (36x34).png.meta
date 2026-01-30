@@ -129,9 +129,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 37
-        height: 24
+        y: 4
+        width: 36
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +149,10 @@ TextureImporter:
       name: Hit (36x34)_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 3
-        width: 38
-        height: 24
+        x: 36
+        y: 4
+        width: 36
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +170,10 @@ TextureImporter:
       name: Hit (36x34)_2
       rect:
         serializedVersion: 2
-        x: 71
-        y: 2
-        width: 38
-        height: 27
+        x: 72
+        y: 3
+        width: 36
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: Hit (36x34)_3
       rect:
         serializedVersion: 2
-        x: 108
-        y: 1
-        width: 36
-        height: 29
+        x: 109
+        y: 2
+        width: 34
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +212,10 @@ TextureImporter:
       name: Hit (36x34)_4
       rect:
         serializedVersion: 2
-        x: 145
-        y: 0
-        width: 34
-        height: 31
+        x: 146
+        y: 1
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,7 +232,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 52681976b4bff42739f2d63fbe1ad092
     internalID: 0
     vertices: []
     indices: 

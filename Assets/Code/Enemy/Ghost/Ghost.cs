@@ -48,10 +48,8 @@ public class Ghost : Enemy
 
     private IEnumerator DisappearRoutine()
     {
-        Disappear();
         animator.SetTrigger("disappear");
         yield return new WaitForSeconds(disappearTime);
-        Appear();
         yield return new WaitForSeconds(appearTime);
         StartCoroutine(DisappearRoutine());
     }

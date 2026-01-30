@@ -7,8 +7,6 @@ public class PlayerMazeMove : MonoBehaviour
 {
 
     // Outlet
-    private MazeLevelController mazeController;
-    private MazeData maze;
     public Tilemap tilemap;
 
     // Configuration
@@ -29,12 +27,10 @@ public class PlayerMazeMove : MonoBehaviour
     // Method
     void Start()
     {
-        mazeController = MazeLevelController.instance;
-        maze = MazeLevelController.mazeData;
-        transform.position = MazeLevelController.instance.nodeManager.allNodes[0].position;
-        currentNode = MazeLevelController.instance.nodeManager.allNodes[0];
-        gridPosition = MazeLevelController.instance.nodeManager.allNodes[0].cell;
-        nodeMap = MazeLevelController.instance.nodeManager.nodeMap;
+        transform.position = MazeLevelManager.instance.nodeManager.allNodes[0].position;
+        currentNode = MazeLevelManager.instance.nodeManager.allNodes[0];
+        gridPosition = MazeLevelManager.instance.nodeManager.allNodes[0].cell;
+        nodeMap = MazeLevelManager.instance.nodeManager.nodeMap;
     }
 
     void Update()
@@ -44,7 +40,7 @@ public class PlayerMazeMove : MonoBehaviour
 
     void Movement()
     {
-        currentNode = MazeLevelController.instance.nodeManager.allNodes[currentNodeID];
+        currentNode = MazeLevelManager.instance.nodeManager.allNodes[currentNodeID];
         dir = new Vector3Int(0,0);
 
         if (Input.GetKey(KeyCode.W)) dir = Vector3Int.up;

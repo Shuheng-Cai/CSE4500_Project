@@ -18,7 +18,7 @@ public class AStarManager : MonoBehaviour
     {
         List<Node> openSet = new List<Node>();
 
-        foreach(var n in MazeLevelController.instance.nodeManager.allNodes)
+        foreach(var n in MazeLevelManager.instance.nodeManager.allNodes)
         {
             n.gScore = float.MaxValue;
         }

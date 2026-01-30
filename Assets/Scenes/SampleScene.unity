@@ -122,6 +122,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &147967112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 147967114}
+  - component: {fileID: 147967113}
+  m_Layer: 0
+  m_Name: Gold - Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &147967113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147967112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2619e75171c2a4bb7abed0a64cc1ba10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGold: 0
+  coinDropTable: {fileID: 11400000, guid: cbd8da8fcccd0cb49b76910ed81d6891, type: 2}
+--- !u!4 &147967114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147967112}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.95198447, y: -0.065731384, z: -0.04549152}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &252841365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2717639109558968646, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
@@ -288,32 +334,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1160084706}
-  - component: {fileID: 1160084705}
+  - component: {fileID: 1160084707}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: EnemySpawn - Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1160084705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160084704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53abec22a596748e2b2fa947e05eedee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  enemies:
-  - {fileID: 2298777961070958808, guid: 05d31c3f31cae4c04ac48585a602f9ea, type: 3}
-  - {fileID: 2897472391413873074, guid: f43107c925b2640b5bc4294b3b750c0a, type: 3}
-  - {fileID: 1331000426966648517, guid: 6b4507359a3689f48b94f0232570f518, type: 3}
-  spawnTime: 1
 --- !u!4 &1160084706
 Transform:
   m_ObjectHideFlags: 0
@@ -329,6 +357,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160084707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160084704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fc1e04f3029a340ab6dfc70f992dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 519420031}
+  enemies:
+  - {fileID: 1331000426966648517, guid: 6b4507359a3689f48b94f0232570f518, type: 3}
+  - {fileID: 2298777961070958808, guid: 05d31c3f31cae4c04ac48585a602f9ea, type: 3}
+  - {fileID: 2897472391413873074, guid: f43107c925b2640b5bc4294b3b750c0a, type: 3}
+  spawnTime: 1
 --- !u!1 &1429843112
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +503,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1316779251993507040, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
+      propertyPath: canShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316779251993507040, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316779251993507040, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
+      propertyPath: currentBulletData
+      value: 
+      objectReference: {fileID: 11400000, guid: 29e54e487ce734b7c896df2afb031c3b, type: 2}
     - target: {fileID: 1709417532716060746, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
       propertyPath: m_Name
       value: Player
@@ -505,6 +563,10 @@ PrefabInstance:
       propertyPath: _tilemap
       value: 
       objectReference: {fileID: 1429843115}
+    - target: {fileID: 5156367567930396544, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -518,3 +580,4 @@ SceneRoots:
   - {fileID: 1160084706}
   - {fileID: 872504285}
   - {fileID: 1141679657590395015}
+  - {fileID: 147967114}
