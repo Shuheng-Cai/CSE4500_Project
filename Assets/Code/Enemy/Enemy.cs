@@ -57,7 +57,7 @@ public abstract class Enemy : MonoBehaviour
     protected abstract void Move();
 
     // Hit player
-    void OisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.GetComponent<PlayerController>())
         {
