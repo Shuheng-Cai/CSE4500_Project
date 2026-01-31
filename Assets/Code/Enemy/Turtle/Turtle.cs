@@ -17,7 +17,6 @@ public class Turtle : Enemy
             speed = 0;
             isAngry = true;
             animator.SetBool("isAngry", true);
-            StartCoroutine(ResumeMovement());
         }
         transform.position += direction * speed * Time.deltaTime;
     }
