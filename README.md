@@ -1,4 +1,4 @@
-# CSE4500_Project
+# Gold Rush
 
 ## Input / Action
 - WASD Movement for Player.
@@ -29,3 +29,7 @@
 - GameController:
   - Upgrade
   - Coin    
+
+## UPDATE 2026-02-01
+- Enemy: EnemyData(ScriptableObject) + Enemy parent class + Prefabs -> EnemySpawn **Future work: Generate by weight and level**
+- Player: PlayerManager to control spawn **ONCE**. Logical: PlayerController PlayerState. CharacterData(ScriptableObject): Base Attributes and Anim (Different Characters vary). **Future work: more characters. AND UPGRADE SYSTEM**
