@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9185ee6f1b57b46ac064ab4f4a3704, type: 3}
+  m_Script: {fileID: 11500000, guid: e45bcdef967b54893aac248759e82930, type: 3}
   m_Name: Bee
   m_EditorClassIdentifier: 
-  enemyID: 1
-  speed: 5
-  maxHealth: 10
-  damage: 10
+  enemyID: 0
+  speed: 1
+  maxHealth: 100
+  damage: 0
   enemyPrefab: {fileID: 2298777961070958808, guid: 05d31c3f31cae4c04ac48585a602f9ea, type: 3}
-  baseWeight: 1
-  updateWave: 1
+  baseWeight: 0
+  updateWave: 0

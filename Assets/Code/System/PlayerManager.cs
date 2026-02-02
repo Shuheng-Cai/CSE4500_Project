@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerManager : MonoBehaviour
+{
+    public static PlayerManager instance;
+    public CharacterData currentCharacter;
+    public GameObject playerPrefab;
+    public GameObject player;
+
+    // Configuration
+    public int MaxHealth {get ; private set;}
+
+    // Method
+    void Awake()
+    {
+        instance = this;
+    }
+
+    public void Start()
+    {
+        MaxHealth = currentCharacter.BaseMaxHealthPoint;
+    }
+
+    public void ChangeCharacter(CharacterData character)
+    {
+        currentCharacter = character;   
+    }
+
+    public void PlayerGenerate()
+    {
+        player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        DontDestroyOnLoad(player);
+    }
+}
