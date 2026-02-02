@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyID: 0
   speed: 1
   maxHealth: 100
-  damage: 0
+  damage: 10
   enemyPrefab: {fileID: 1331000426966648517, guid: 6b4507359a3689f48b94f0232570f518, type: 3}
   baseWeight: 0
   updateWave: 0

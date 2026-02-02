@@ -8,5 +8,6 @@ public class CharacterData : ScriptableObject
     public RuntimeAnimatorController CharacterAnimController;
     public int BaseSpeed;
     public int BaseMaxHealthPoint;
+    public int BaseDamage;
     public int StartCoin;
 }

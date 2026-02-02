@@ -13,7 +13,8 @@ public enum GameState
     Battle,
     Maze,
     Paused,
-    GameOver
+    GameOver,
+    Character
 }
 
 public class GameManager : MonoBehaviour
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         GameSeedInit();
         DontDestroyOnLoad(gameObject);
         currentState = GameState.MainMenu;
+        EnterMainMenu();
     }
 
     // When Enter the main menu
@@ -62,5 +64,11 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Battle;
         PlayerManager.instance.PlayerGenerate();
         SceneManager.LoadScene("Battle");
+    }
+
+    public void CharacterChangePage()
+    {
+        currentState = GameState.Character;
+        SceneManager.LoadScene("CharacterChoose");
     }
 }

@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     public void PlayerGenerate()
     {
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        player.GetComponent<Animator>().runtimeAnimatorController = currentCharacter.CharacterAnimController;
         DontDestroyOnLoad(player);
     }
 }
