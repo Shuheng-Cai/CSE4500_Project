@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a4fddf73d50394b935d92465b7d198, type: 3}
-  m_Name: Character - 1
+  m_Script: {fileID: 11500000, guid: e45bcdef967b54893aac248759e82930, type: 3}
+  m_Name: SmallMushroom
   m_EditorClassIdentifier: 
-  CharacterAnimController: {fileID: 9100000, guid: f4fc946ac45793b43bf75776ba816675, type: 2}
-  BaseSpeed: 10
-  BaseMaxHealthPoint: 100
-  BaseDamage: 0
-  StartCoin: 0
+  enemyID: 0
+  speed: 1
+  maxHealth: 25
+  damage: 0
+  enemyPrefab: {fileID: 4745737064178577861, guid: 804223a9f3468e548bb3bd59383f8b1b, type: 3}
+  baseWeight: 0
+  updateWave: 0

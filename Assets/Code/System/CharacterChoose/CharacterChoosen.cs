@@ -19,6 +19,6 @@ public class CharacterChoosen : MonoBehaviour
     {
         PlayerManager.instance.currentCharacter = thisCharacter;
         Debug.Log(PlayerManager.instance.currentCharacter.ToString());
-        GameManager.instance.EnterMainMenu();
+        GameManager.instance.EnterNextLevel();
     }
 }

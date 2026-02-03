@@ -14,7 +14,8 @@ public enum GameState
     Maze,
     Paused,
     GameOver,
-    Character
+    Character,
+    Store
 }
 
 public class GameManager : MonoBehaviour
@@ -23,9 +24,14 @@ public class GameManager : MonoBehaviour
     public static int runGameSeed { get; private set; }
     public static GameManager instance {get; private set;}
     public static float totalGold {get; private set;}
+
+    // Configuration
+    public float everyLevelTime;
     
     // State Tracking
     public GameState currentState {get; private set;}
+    public float battleTimeCounter;
+    private bool canCountTime;
 
     // Method
     void Awake()
@@ -37,12 +43,29 @@ public class GameManager : MonoBehaviour
         EnterMainMenu();
     }
 
+    void FixedUpdate()
+    {
+        if (canCountTime)
+        {
+            StartTimer();
+        }
+        
+    }
+
     // When Enter the main menu
     public void EnterMainMenu()
     {
         currentState = GameState.MainMenu;
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
+    }
+
+    public void EnterStore()
+    {
+        canCountTime = false;
+        currentState = GameState.Store;
+        SceneManager.LoadScene("Store");
+        PlayerManager.instance.ResetPlayerPosition();
     }
 
     // When Pause the game, only play stage
@@ -59,16 +82,38 @@ public class GameManager : MonoBehaviour
         runGameSeed = (int)DateTime.UtcNow.Ticks;
     }
 
-    public void StartGame()
+    // First Time start game: choose character
+    public void FirstStartGame()
     {
-        currentState = GameState.Battle;
-        PlayerManager.instance.PlayerGenerate();
+        currentState = GameState.Character;
+        SceneManager.LoadScene("CharacterChoose");
+    }
+
+    // Enter next level: first time: generate player | reset player position
+    public void EnterNextLevel()
+    {
+        if(PlayerManager.instance.player == null)
+        {
+            PlayerManager.instance.PlayerGenerate();
+        }
         SceneManager.LoadScene("Battle");
+        PlayerManager.instance.ResetPlayerPosition();
+        canCountTime = true;
     }
 
     public void CharacterChangePage()
     {
         currentState = GameState.Character;
         SceneManager.LoadScene("CharacterChoose");
+    }
+
+    void StartTimer()
+    {
+        battleTimeCounter += Time.fixedDeltaTime;
+        if(battleTimeCounter > everyLevelTime)
+        {
+            battleTimeCounter = 0;
+            EnterStore();
+        }
     }
 }

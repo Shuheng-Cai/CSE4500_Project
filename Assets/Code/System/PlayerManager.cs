@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     public CharacterData currentCharacter;
     public GameObject playerPrefab;
-    public GameObject player;
+    public GameObject player {get; private set;}
 
     // Configuration
     public int MaxHealth {get ; private set;}
@@ -33,5 +33,10 @@ public class PlayerManager : MonoBehaviour
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         player.GetComponent<Animator>().runtimeAnimatorController = currentCharacter.CharacterAnimController;
         DontDestroyOnLoad(player);
+    }
+
+    public void ResetPlayerPosition()
+    {
+        player.transform.position = Vector2.zero;
     }
 }

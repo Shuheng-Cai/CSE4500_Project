@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    public void StartGame()
+    public void FirstStartGame()
     {
-        GameManager.instance.StartGame();
-    }
-
-    public void ChooseCharacter()
-    {
-        GameManager.instance.CharacterChangePage();
+        GameManager.instance.FirstStartGame();
     }
 }
