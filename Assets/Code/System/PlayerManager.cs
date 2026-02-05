@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -12,10 +13,12 @@ public class PlayerManager : MonoBehaviour
 
     // Make it List
     public List<BulletData> currentBullets;
+    public List<BulletData> currentLasers;
     public GameObject player {get; private set;}
 
     // Configuration
     public int MaxHealth {get ; private set;}
+    public bool enterBattle {get; private set;}
 
     // Method
     void Awake()
@@ -36,13 +39,30 @@ public class PlayerManager : MonoBehaviour
     public void PlayerGenerate()
     {
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        currentBullets.Add(currentCharacter.BaseBullet);
+
+        if (currentCharacter.BaseBullet.isLaser)
+        {
+            currentLasers.Add(currentCharacter.BaseBullet);
+        }
+
+        else 
+        {
+            currentBullets.Add(currentCharacter.BaseBullet);
+        }
+
         player.GetComponent<Animator>().runtimeAnimatorController = currentCharacter.CharacterAnimController;
         DontDestroyOnLoad(player);
     }
 
+    // TODO: enter battle in other place
     public void ResetPlayerPosition()
     {
         player.transform.position = Vector2.zero;
+        enterBattle = true;
+    }
+
+    public void EnterBattle()
+    {
+        enterBattle = false;
     }
 }

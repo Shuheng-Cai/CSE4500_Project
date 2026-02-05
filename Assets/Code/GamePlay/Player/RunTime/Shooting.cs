@@ -6,6 +6,7 @@
 // Known Tricky Cases: 
 
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -43,36 +44,41 @@ public class Shooting : MonoBehaviour
     {
         scalex = transform.localScale.x;
         canShoot = true;
-        bulletType = 0;
         faceDir = 1;
+        MouseToPlayer();
     }
     
     public void Update()
     {
+        if (PlayerManager.instance.enterBattle)
+        {
+            if (canShoot)
+            {
+                StartCoroutine(Shoot());
+            }
+
+            foreach(var i in PlayerManager.instance.currentLasers)
+            {
+                GameObject bullet = Instantiate(i.bulletPrefeb, transform.position, bulletRotation);
+                bullet.GetComponent<BaseBullet>().Init(i, mouseWorldPos);
+            }
+            
+            PlayerManager.instance.EnterBattle();
+        }
         shootPosition = gameObject.transform.position;
         MouseToPlayer();
-
-        if (canShoot && PlayerManager.instance.currentBullets != null)
-        {
-            StartCoroutine(Shoot());
-        }
     }
 
     // after spawn seconds, shoot once
     // TODO: FireRate for player
     IEnumerator Shoot()
     {
-        canShoot = false;
         foreach(var currentBulletData in PlayerManager.instance.currentBullets)
         {
-            if(currentBulletData.isLaser)
-                PlayerManager.instance.currentBullets.Remove(currentBulletData);
-            
             GameObject bullet = Instantiate(currentBulletData.bulletPrefeb, transform.position, bulletRotation);
             bullet.GetComponent<BaseBullet>().Init(currentBulletData, mouseWorldPos);
-            bullet.SetActive(true);
         }
         yield return new WaitForSeconds(1f);
-        canShoot = true;
+        StartCoroutine(Shoot());
     }
 }

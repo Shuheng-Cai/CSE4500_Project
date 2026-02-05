@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class BulletWater : BaseBullet
 {
-    private BoxCollider2D boxCollider2D;
-
     protected override void Start()
     {
         
