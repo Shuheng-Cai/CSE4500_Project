@@ -6,6 +6,7 @@
 // Dependencies: take damage by bullet; 
 // ==================================================
 
+using System.Collections;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -51,6 +52,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth = currentHealth - damage;
+        InvulnerableAfterHit();
         animator.SetTrigger("isHit");
         if(currentHealth < 0)
         {
@@ -99,5 +101,12 @@ public abstract class Enemy : MonoBehaviour
         {
             sprite.flipX = false;
         }
+    }
+
+    IEnumerator InvulnerableAfterHit()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<CapsuleCollider2D>().enabled = true;
     }
 }

@@ -10,14 +10,12 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-
-    // TODO: Rewrite
     // Outlet
-    public BulletData currentBulletData; // bulletPrefabs;
     public int bulletType;
     public Vector2 shootPosition; // record the shooting postion(Player transform)
     public bool canShoot; // whether player can shoot
     public Quaternion bulletRotation;
+    public Vector3 mouseWorldPos;
 
     // State Tracking
     private int faceDir;
@@ -27,7 +25,7 @@ public class Shooting : MonoBehaviour
     public void MouseToPlayer()
     {
         Vector2 mousePosition = Input.mousePosition;
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
         mouseWorldPos.z = 0f;
         Vector3 direction = mouseWorldPos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -54,7 +52,7 @@ public class Shooting : MonoBehaviour
         shootPosition = gameObject.transform.position;
         MouseToPlayer();
 
-        if (canShoot)
+        if (canShoot && PlayerManager.instance.currentBullets != null)
         {
             StartCoroutine(Shoot());
         }
@@ -65,9 +63,15 @@ public class Shooting : MonoBehaviour
     IEnumerator Shoot()
     {
         canShoot = false;
-        GameObject bullet = Instantiate(currentBulletData.bulletPrefeb, transform.position, bulletRotation);
-        bullet.GetComponent<BaseBullet>().Init(currentBulletData);
-        bullet.SetActive(true);
+        foreach(var currentBulletData in PlayerManager.instance.currentBullets)
+        {
+            if(currentBulletData.isLaser)
+                PlayerManager.instance.currentBullets.Remove(currentBulletData);
+            
+            GameObject bullet = Instantiate(currentBulletData.bulletPrefeb, transform.position, bulletRotation);
+            bullet.GetComponent<BaseBullet>().Init(currentBulletData, mouseWorldPos);
+            bullet.SetActive(true);
+        }
         yield return new WaitForSeconds(1f);
         canShoot = true;
     }

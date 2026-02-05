@@ -10,4 +10,5 @@ public class CharacterData : ScriptableObject
     public int BaseMaxHealthPoint;
     public int BaseDamage;
     public int StartCoin;
+    public BulletData BaseBullet;
 }

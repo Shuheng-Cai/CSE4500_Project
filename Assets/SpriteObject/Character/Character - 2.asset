@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Character - 2
   m_EditorClassIdentifier: 
   CharacterAnimController: {fileID: 9100000, guid: 905f8e85b09ab4121aa05f8baf13b6b6, type: 2}
-  BaseSpeed: 3
+  BaseSpeed: 10
   BaseMaxHealthPoint: 100
   BaseDamage: 0
   StartCoin: 2
+  BaseBullet: {fileID: 11400000, guid: 3b93fc21d26614e04b056191a2563768, type: 2}

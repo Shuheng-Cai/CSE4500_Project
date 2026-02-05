@@ -49,3 +49,6 @@ TagManager:
   - name: Player
     uniqueID: 696217517
     locked: 0
+  - name: Bullet
+    uniqueID: 2749413793
+    locked: 0

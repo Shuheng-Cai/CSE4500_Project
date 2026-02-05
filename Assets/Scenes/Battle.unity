@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 7663493155607065391, guid: f19ec89897aa8d84bb556a9da83aa9cf, type: 3}
   - {fileID: 2897472391413873074, guid: f43107c925b2640b5bc4294b3b750c0a, type: 3}
   - {fileID: 1331000426966648517, guid: 6b4507359a3689f48b94f0232570f518, type: 3}
+  - {fileID: 1331000426966648517, guid: 6b4507359a3689f48b94f0232570f518, type: 3}
   spawnTime: 1
 --- !u!4 &490202144
 Transform:
@@ -235,7 +236,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.84
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

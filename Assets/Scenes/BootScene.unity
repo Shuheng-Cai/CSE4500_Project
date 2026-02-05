@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCharacter: {fileID: 11400000, guid: 0401f24811154644582d9629f8d055e5, type: 2}
   playerPrefab: {fileID: 1709417532716060746, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
-  player: {fileID: 1709417532716060746, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
+  currentBullets: []
 --- !u!114 &870328698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acdce138b06843b7956fbed64b5c3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everyLevelTime: 5
+  everyLevelTime: 100
+  battleTimeCounter: 0
 --- !u!4 &870328699
 Transform:
   m_ObjectHideFlags: 0

@@ -5,8 +5,13 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+
+    // Outlet
     public CharacterData currentCharacter;
     public GameObject playerPrefab;
+
+    // Make it List
+    public List<BulletData> currentBullets;
     public GameObject player {get; private set;}
 
     // Configuration
@@ -31,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     public void PlayerGenerate()
     {
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        currentBullets.Add(currentCharacter.BaseBullet);
         player.GetComponent<Animator>().runtimeAnimatorController = currentCharacter.CharacterAnimController;
         DontDestroyOnLoad(player);
     }
