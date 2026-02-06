@@ -19,7 +19,6 @@ public abstract class BaseBullet : MonoBehaviour
     [HideInInspector]public float lifeTime = 3f;
     [HideInInspector]public bool canPenetrate = false;
     [HideInInspector]public bool canMove = true;
-    [HideInInspector]public Vector3 mousePosition;
 
     public void Init(BulletData bulletData, Vector3 mouseWorldPos)
     {
@@ -27,7 +26,6 @@ public abstract class BaseBullet : MonoBehaviour
         this.lifeTime = bulletData.lifeTime;
         this.canPenetrate = bulletData.canPenetrate;
         this.damage = bulletData.damage;
-        mousePosition = mouseWorldPos;
     }
 
     // TODO: Damage.
@@ -45,7 +43,7 @@ public abstract class BaseBullet : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(canMove)
+        if(canMove && PlayerManager.instance.playerAlive)
             Move();
     }
 
@@ -69,5 +67,10 @@ public abstract class BaseBullet : MonoBehaviour
     {
         if(!canPenetrate)
             Destroy(gameObject);
+    }
+
+    void Oestroy()
+    {
+        Debug.Log($"Destroyed: {name} frame={Time.frameCount}");
     }
 }

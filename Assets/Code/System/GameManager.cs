@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Security.Cryptography;
-using UnityEngine.SocialPlatforms;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public enum GameState
@@ -32,8 +28,19 @@ public class GameManager : MonoBehaviour
     public GameState currentState {get; private set;}
     public float battleTimeCounter;
     private bool canCountTime;
+    public int currentLevel;
 
     // Method
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void Awake()
     {
         instance = this;
@@ -65,7 +72,7 @@ public class GameManager : MonoBehaviour
         canCountTime = false;
         currentState = GameState.Store;
         SceneManager.LoadScene("Store");
-        PlayerManager.instance.ResetPlayerPosition();
+        PlayerManager.instance.EnterStore();
     }
 
     // When Pause the game, only play stage
@@ -89,15 +96,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("CharacterChoose");
     }
 
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Battle")
+        {
+            PlayerManager.instance.ResetPlayerPosition();
+            canCountTime = true;
+        }
+    }
+
     // Enter next level: first time: generate player | reset player position
     public void EnterNextLevel()
     {
         if(PlayerManager.instance.player == null)
         {
             PlayerManager.instance.PlayerGenerate();
+            currentLevel = 0;
         }
         SceneManager.LoadScene("Battle");
-        PlayerManager.instance.ResetPlayerPosition();
+        currentLevel += 1;
         canCountTime = true;
     }
 
@@ -115,5 +132,22 @@ public class GameManager : MonoBehaviour
             battleTimeCounter = 0;
             EnterStore();
         }
+    }
+
+    public void EnterGameOver()
+    {
+        StopAllCoroutines();
+        CancelInvoke();
+        StartCoroutine(GameOverFlow());
+    }
+
+    private IEnumerator GameOverFlow()
+    {
+        SceneManager.LoadScene("GameOver");
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("BootScene");
+        Destroy(gameObject);
     }
 }

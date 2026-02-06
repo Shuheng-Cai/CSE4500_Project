@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -12,10 +13,16 @@ public class PlayerManager : MonoBehaviour
 
     // Make it List
     public List<BulletData> currentBullets;
+    public List<BulletData> currentLasers;
     public GameObject player {get; private set;}
 
     // Configuration
-    public int MaxHealth {get ; private set;}
+    public float MaxHealth {get ; private set;}
+    public bool enterBattle;
+
+    // StateTracking
+    public bool invulnerable = false;
+    public bool playerAlive;
 
     // Method
     void Awake()
@@ -23,26 +30,63 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
 
-    public void Start()
-    {
-        MaxHealth = currentCharacter.BaseMaxHealthPoint;
-    }
-
     public void ChangeCharacter(CharacterData character)
     {
-        currentCharacter = character;   
+        currentCharacter = character;
+        GoldManager.instance.AddCoin(character.StartCoin);
+        MaxHealth = currentCharacter.BaseMaxHealthPoint; 
+        Debug.Log(character.StartCoin);
     }
 
     public void PlayerGenerate()
     {
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        currentBullets.Add(currentCharacter.BaseBullet);
+        playerAlive = true;
+
+        if (currentCharacter.BaseBullet.isLaser)
+        {
+            currentLasers.Add(currentCharacter.BaseBullet);
+        }
+
+        else 
+        {
+            currentBullets.Add(currentCharacter.BaseBullet);
+        }
+
         player.GetComponent<Animator>().runtimeAnimatorController = currentCharacter.CharacterAnimController;
         DontDestroyOnLoad(player);
     }
 
+    // TODO: enter battle in other place
     public void ResetPlayerPosition()
     {
         player.transform.position = Vector2.zero;
+        new WaitForSeconds(1f);
+        enterBattle = true;
+    }
+
+    public void EnterStore()
+    {
+        player.transform.position = Vector2.zero;
+    }
+
+    public void EnterBattle()
+    {
+        enterBattle = false;
+    }
+
+    public void Die()
+    {
+        playerAlive = false;
+        GameManager.instance.EnterGameOver();
+        Destroy(player);
+    }
+
+    public IEnumerator SetPlayerInvulnerable()
+    {
+        invulnerable = true;
+        player.GetComponent<PlayerAnim>().isHit();
+        yield return new WaitForSeconds(1f);
+        invulnerable = false;
     }
 }

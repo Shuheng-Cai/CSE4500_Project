@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 5156367567930396544}
   - component: {fileID: 3555774058601846286}
   - component: {fileID: 1260423713107980119}
-  - component: {fileID: 1316779251993507040}
   - component: {fileID: 3804162253027878320}
   - component: {fileID: 8096317152742440027}
   - component: {fileID: 4637195213968231205}
+  - component: {fileID: 8700389750338502006}
+  - component: {fileID: 3569797937608572585}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -91,23 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealthPoint: 0
---- !u!114 &1316779251993507040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709417532716060746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d95cdeb098ba4249ad39371b962f848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentBulletData: {fileID: 11400000, guid: 29e54e487ce734b7c896df2afb031c3b, type: 2}
-  bulletType: 0
-  shootPosition: {x: 0, y: 0}
-  canShoot: 1
-  bulletRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!70 &3804162253027878320
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -181,18 +165,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 696217517
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -540444899, guid: fd6f448bc18e6864bb8cd8a66735d986, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4637195213968231205
@@ -205,7 +189,7 @@ Animator:
   m_GameObject: {fileID: 1709417532716060746}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4fc946ac45793b43bf75776ba816675, type: 2}
+  m_Controller: {fileID: 9100000, guid: 905f8e85b09ab4121aa05f8baf13b6b6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -216,3 +200,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8700389750338502006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709417532716060746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d95cdeb098ba4249ad39371b962f848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletType: 0
+  shootPosition: {x: 0, y: 0}
+  canShoot: 0
+  bulletRotation: {x: 0, y: 0, z: 0, w: 0}
+  mouseWorldPos: {x: 0, y: 0, z: 0}
+--- !u!114 &3569797937608572585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709417532716060746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884e531efff0b4212bb7fbe579c9b981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}

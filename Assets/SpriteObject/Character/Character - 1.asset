@@ -15,6 +15,6 @@ MonoBehaviour:
   CharacterAnimController: {fileID: 9100000, guid: f4fc946ac45793b43bf75776ba816675, type: 2}
   BaseSpeed: 10
   BaseMaxHealthPoint: 100
-  BaseDamage: 0
+  BaseStrength: 1
   StartCoin: 0
   BaseBullet: {fileID: 11400000, guid: dc868a3830f34476abe12d101aa812c9, type: 2}

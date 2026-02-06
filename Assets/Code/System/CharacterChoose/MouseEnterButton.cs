@@ -13,14 +13,14 @@ public class MouseEnterButton : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         RectTransform rectTransform = (RectTransform)transform;
         isEnter = true;
-        panel.Show(characterData,  rectTransform.anchoredPosition);
-        transform.Find("Character")?.gameObject.GetComponent<Animator>().SetFloat("Speed", 0.2f);
+        panel.Show(characterData);
+        transform.Find("Character")?.gameObject.GetComponent<Animator>().SetFloat("speed", 0.2f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isEnter = false;
         panel.Hide();
-        transform.Find("Character")?.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
+        transform.Find("Character")?.gameObject.GetComponent<Animator>().SetFloat("speed", 0f);
     }
 }
