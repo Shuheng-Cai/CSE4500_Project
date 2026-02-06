@@ -139,15 +139,15 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         CancelInvoke();
         StartCoroutine(GameOverFlow());
-        Destroy(gameObject);
     }
 
     private IEnumerator GameOverFlow()
     {
         SceneManager.LoadScene("GameOver");
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("BootScene");
+        Destroy(gameObject);
     }
 }

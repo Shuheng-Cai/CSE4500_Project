@@ -19,15 +19,11 @@ public class PlayerAnim : MonoBehaviour
     void Update()
     {
         Moving();
-        isHit();
     }
 
     public void isHit()
     {
-        if (PlayerManager.instance.invulnerable)
-        {
-            animator.SetTrigger("isHit");
-        }
+        animator.SetTrigger("isHit");
     }
 
     public void Moving()

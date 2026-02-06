@@ -30,7 +30,7 @@ public class PlayerState : MonoBehaviour
             {
                 PlayerManager.instance.Die();
             }
-            PlayerManager.instance.SetPlayerInvulnerable();
+            StartCoroutine(PlayerManager.instance.SetPlayerInvulnerable());
         }
     }
 }

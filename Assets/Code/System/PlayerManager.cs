@@ -82,10 +82,11 @@ public class PlayerManager : MonoBehaviour
         Destroy(player);
     }
 
-    public void SetPlayerInvulnerable()
+    public IEnumerator SetPlayerInvulnerable()
     {
         invulnerable = true;
-        new WaitForSeconds(0.5f);
+        player.GetComponent<PlayerAnim>().isHit();
+        yield return new WaitForSeconds(1f);
         invulnerable = false;
     }
 }

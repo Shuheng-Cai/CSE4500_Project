@@ -13,7 +13,7 @@ public class MouseEnterButton : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         RectTransform rectTransform = (RectTransform)transform;
         isEnter = true;
-        panel.Show(characterData,  rectTransform.anchoredPosition);
+        panel.Show(characterData);
         transform.Find("Character")?.gameObject.GetComponent<Animator>().SetFloat("speed", 0.2f);
     }
 

@@ -16,10 +16,9 @@ public class CharacterPanel : MonoBehaviour
         Hide();
     }
 
-    public void Show(CharacterData data, Vector2 screenPos)
+    public void Show(CharacterData data)
     {
         panel.gameObject.SetActive(true);
-        panel.anchoredPosition = screenPos + panelToButtonOffset;
         attributeText.text = 
             $"Speed:{data.BaseSpeed}\n" +
             $"HP:{data.BaseMaxHealthPoint}\n" +
