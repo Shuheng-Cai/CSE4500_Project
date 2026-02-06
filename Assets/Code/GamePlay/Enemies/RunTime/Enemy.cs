@@ -25,6 +25,7 @@ public abstract class Enemy : MonoBehaviour
     // State Tracking
     public bool isMove;
     public float currentHealth;
+    public bool invulnerable = false;
 
     // Mathod
     protected virtual void Awake()
@@ -40,7 +41,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (GameObject.FindWithTag("Player").transform.position != null)
+        if (PlayerManager.instance.playerAlive)
         {
             target = GameObject.FindWithTag("Player").transform.position;
             FaceDir();
@@ -51,13 +52,17 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth = currentHealth - damage;
-        InvulnerableAfterHit();
-        animator.SetTrigger("isHit");
-        if(currentHealth < 0)
+        if (!invulnerable)
         {
-            Die();
+            currentHealth = currentHealth - damage;
+            StartCoroutine(InvulnerableAfterHit());
+            animator.SetTrigger("isHit");
+            if(currentHealth < 0)
+            {
+                Die();
+            }
         }
+
     }
 
     protected abstract void Move();
@@ -105,8 +110,8 @@ public abstract class Enemy : MonoBehaviour
 
     IEnumerator InvulnerableAfterHit()
     {
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        invulnerable = true;
         yield return new WaitForSeconds(0.5f);
-        GetComponent<CapsuleCollider2D>().enabled = true;
+        invulnerable = false;
     }
 }

@@ -586,9 +586,9 @@ RectTransform:
   - {fileID: 481423299}
   m_Father: {fileID: 1814623881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242.5, y: 150}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 103.5, y: -45}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &542058920
@@ -1108,8 +1108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -241.52, y: 54.61}
-  m_SizeDelta: {x: 181.73, y: 109.22}
+  m_AnchoredPosition: {x: -8, y: 65}
+  m_SizeDelta: {x: 181.72998, y: 109.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042247351
 MonoBehaviour:
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc190396a0d84e048b63dbd324bcdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
+  panel: {fileID: 1042247350}
   attributeText: {fileID: 296930102}
   panelToButtonOffset: {x: 0, y: -150}
 --- !u!1 &1814623877
@@ -1304,9 +1304,9 @@ RectTransform:
   - {fileID: 930361317}
   m_Father: {fileID: 1814623881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.52002, y: 150}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -9.52002, y: -45}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139530462

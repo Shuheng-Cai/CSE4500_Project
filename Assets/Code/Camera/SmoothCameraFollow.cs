@@ -30,11 +30,15 @@ public class SmoothCameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        var target = new Vector3(_Follow.position.x, _Follow.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(
-            transform.position,
-            target,
-            smoothSpeed * Time.deltaTime
-        );
+        if (PlayerManager.instance.playerAlive)
+        {
+            var target = new Vector3(_Follow.position.x, _Follow.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(
+                transform.position,
+                target,
+                smoothSpeed * Time.deltaTime
+            );
+        }
+
     }
 }

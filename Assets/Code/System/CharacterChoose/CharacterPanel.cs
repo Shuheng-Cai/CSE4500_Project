@@ -23,7 +23,7 @@ public class CharacterPanel : MonoBehaviour
         attributeText.text = 
             $"Speed:{data.BaseSpeed}\n" +
             $"HP:{data.BaseMaxHealthPoint}\n" +
-            $"Damage:{data.BaseDamage}";
+            $"Strength:{data.BaseStrength}";
     }
 
     public void Hide()

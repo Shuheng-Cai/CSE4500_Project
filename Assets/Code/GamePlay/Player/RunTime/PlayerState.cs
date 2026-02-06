@@ -21,23 +21,16 @@ public class PlayerState : MonoBehaviour
         instance = this;
     }
 
-    void Update()
-    {
-        
-    }
-
     public void TakeDamage(float damage)
     {
-        currentHealthPoint -= damage;
-        if(currentHealthPoint < 0)
+        if (!PlayerManager.instance.invulnerable)
         {
-            Die();
+            currentHealthPoint -= damage;
+            if(currentHealthPoint < 0)
+            {
+                PlayerManager.instance.Die();
+            }
+            PlayerManager.instance.SetPlayerInvulnerable();
         }
-    }
-
-    private void Die()
-    {
-        GameManager.instance.EnterMainMenu();
-        Destroy(gameObject);
     }
 }

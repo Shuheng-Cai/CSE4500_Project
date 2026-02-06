@@ -6,9 +6,9 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     public RuntimeAnimatorController CharacterAnimController;
-    public int BaseSpeed;
-    public int BaseMaxHealthPoint;
-    public int BaseDamage;
-    public int StartCoin;
+    public float BaseSpeed;
+    public float BaseMaxHealthPoint;
+    public float BaseStrength;
+    public float StartCoin;
     public BulletData BaseBullet;
 }

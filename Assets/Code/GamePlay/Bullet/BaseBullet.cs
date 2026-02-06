@@ -43,7 +43,7 @@ public abstract class BaseBullet : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(canMove)
+        if(canMove && PlayerManager.instance.playerAlive)
             Move();
     }
 

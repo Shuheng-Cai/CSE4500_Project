@@ -154,6 +154,7 @@ MonoBehaviour:
   currentCharacter: {fileID: 11400000, guid: 0401f24811154644582d9629f8d055e5, type: 2}
   playerPrefab: {fileID: 0}
   currentBullets: []
+  currentLasers: []
 --- !u!4 &279967475
 Transform:
   m_ObjectHideFlags: 0
@@ -525,21 +526,6 @@ MonoBehaviour:
   smallMushroomPrefab: {fileID: 4745737064178577861, guid: 41f92940b6b12c94286dd57eb908b7c8, type: 3}
   splitCount: 2
   smallMushroomSpawnSeperation: 10
---- !u!114 &4337485670761724062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663493157066945003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
 --- !u!95 &4637195214296221480
 Animator:
   serializedVersion: 5
@@ -715,7 +701,6 @@ GameObject:
   - component: {fileID: 5520023282080579287}
   - component: {fileID: 7165969724518055018}
   - component: {fileID: 2517155845270860169}
-  - component: {fileID: 4337485670761724062}
   - component: {fileID: 4033636066517114482}
   m_Layer: 0
   m_Name: Enemy - Mushroom
