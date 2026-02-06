@@ -10,6 +10,7 @@
   - Pig: HP lower than half, change to Angry Pig.
   - Ghost: Invulnerable every 5 seconds.
   - Bee: Shoot to Player.
+  - Bunny: Basic
   - ....
 
 ## Rewards
