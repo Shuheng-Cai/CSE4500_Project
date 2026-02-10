@@ -25,7 +25,7 @@ public abstract class BaseBullet : MonoBehaviour
         this.speed = bulletData.speed;
         this.lifeTime = bulletData.lifeTime;
         this.canPenetrate = bulletData.canPenetrate;
-        this.damage = bulletData.damage;
+        this.damage = bulletData.damage * PlayerManager.instance.Strength;
     }
 
     // TODO: Damage.
@@ -67,10 +67,5 @@ public abstract class BaseBullet : MonoBehaviour
     {
         if(!canPenetrate)
             Destroy(gameObject);
-    }
-
-    void Oestroy()
-    {
-        Debug.Log($"Destroyed: {name} frame={Time.frameCount}");
     }
 }

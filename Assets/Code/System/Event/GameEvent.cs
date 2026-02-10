@@ -9,4 +9,9 @@ public static class GameEvent
 
     // Where the enemy die.
     public static Action<Vector3> OnDieEnemy;
+
+    // Upgrade Event
+    public static Action OnPlayerUpgrade;
+
+    public static Action<UpgradeType> OnPlayerUpgradeUI;
 }

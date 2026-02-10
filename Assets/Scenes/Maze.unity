@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  playerClass: 5
+  character: 5
   difficulty: 6
   runNumber: 7
   origin: {x: 0, y: 0, z: 0}
@@ -499,7 +499,6 @@ GameObject:
   - component: {fileID: 1505701023}
   - component: {fileID: 1505701022}
   - component: {fileID: 1505701021}
-  - component: {fileID: 1505701024}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -581,20 +580,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1505701024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505701020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 320a2a9cd1cd04c92b0b3119bf5bd0d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Follow: {fileID: 291821356}
-  smoothSpeed: 8
 --- !u!1 &1566451742
 GameObject:
   m_ObjectHideFlags: 0

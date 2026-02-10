@@ -71,6 +71,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  canEnd: 1
   initialOffset: {x: 5, y: -15}
   endOffset: {x: -5, y: 15}
   offsetCurveX:

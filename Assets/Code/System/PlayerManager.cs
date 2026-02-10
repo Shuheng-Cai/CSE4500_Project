@@ -17,13 +17,18 @@ public class PlayerManager : MonoBehaviour
     public GameObject player {get; private set;}
 
     // Configuration
-    public float MaxHealth {get ; private set;}
-    public bool enterBattle;
+
+    // Player Attributes
+    [Header("Player Attribute")]
+    public float MaxHealth;
+    public float Speed;
+    public float Strength;
 
     // StateTracking
     public bool invulnerable = false;
     public bool playerAlive;
-
+    public bool enterBattle;
+    
     // Method
     void Awake()
     {
@@ -34,7 +39,10 @@ public class PlayerManager : MonoBehaviour
     {
         currentCharacter = character;
         GoldManager.instance.AddCoin(character.StartCoin);
+
         MaxHealth = currentCharacter.BaseMaxHealthPoint; 
+        Strength = currentCharacter.BaseStrength;
+
         Debug.Log(character.StartCoin);
     }
 
