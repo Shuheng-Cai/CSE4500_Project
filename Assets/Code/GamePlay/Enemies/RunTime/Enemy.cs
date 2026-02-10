@@ -43,11 +43,10 @@ public abstract class Enemy : MonoBehaviour
     {
         if (PlayerManager.instance.playerAlive)
         {
-            target = GameObject.FindWithTag("Player").transform.position;
+            ChooseNearestPlayer();
             FaceDir();
             Move();
         }
-
     }
 
     public void TakeDamage(float damage)
@@ -105,6 +104,26 @@ public abstract class Enemy : MonoBehaviour
         else
         {
             sprite.flipX = false;
+        }
+    }
+
+    protected virtual void ChooseNearestPlayer()
+    {
+        PlayerState[] players = FindObjectsOfType<PlayerState>();
+        float closestTarget = 9999f;
+
+        for(int i = 0; i < players.Length; i++)
+        {
+            PlayerState player = players[i];
+
+            Vector2 directionToTarget = transform.position - player.transform.position;
+
+            if(directionToTarget.sqrMagnitude < closestTarget)
+            {
+                closestTarget = directionToTarget.sqrMagnitude;
+
+                target = player.transform.position;
+            }
         }
     }
 
