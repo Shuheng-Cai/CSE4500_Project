@@ -17,8 +17,8 @@ public class CharacterText : MonoBehaviour
     public void Show(CharacterData data)
     {
         attributeText.text = 
-            $"Speed:{data.BaseSpeed}\n" +
-            $"HP:{data.BaseMaxHealthPoint}\n" +
-            $"Strength:{data.BaseStrength}";
+            $"{data.BaseSpeed}\n" +
+            $"{data.BaseMaxHealthPoint}\n" +
+            $"{data.BaseStrength}";
     }
 }

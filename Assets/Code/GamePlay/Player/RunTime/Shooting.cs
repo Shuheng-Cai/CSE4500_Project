@@ -50,7 +50,7 @@ public class Shooting : MonoBehaviour
     
     public void Update()
     {
-        if (PlayerManager.instance.enterBattle)
+        if (PlayerManager.instance.isEnterBattle)
         {
             if (canShoot)
             {
@@ -73,7 +73,7 @@ public class Shooting : MonoBehaviour
     // TODO: FireRate for player
     IEnumerator Shoot()
     {
-        foreach(var currentBulletData in PlayerManager.instance.currentBullets)
+        foreach(var currentBulletData in PlayerManager.instance.currentNormalBullets)
         {
             GameObject bullet = Instantiate(currentBulletData.bulletPrefeb, transform.position, bulletRotation);
             bullet.GetComponent<BaseBullet>().Init(currentBulletData, mouseWorldPos);

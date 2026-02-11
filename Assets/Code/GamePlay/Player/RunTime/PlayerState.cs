@@ -7,15 +7,6 @@ public class PlayerState : MonoBehaviour
     // Outlets
     public static PlayerState instance;
 
-    // Configuration
-    public float currentHealthPoint;
-
-    // Method
-    void Awake()
-    {
-        currentHealthPoint = PlayerManager.instance.MaxHealth;
-    }
-
     void Start()
     {
         instance = this;
@@ -25,8 +16,8 @@ public class PlayerState : MonoBehaviour
     {
         if (!PlayerManager.instance.invulnerable)
         {
-            currentHealthPoint -= damage;
-            if(currentHealthPoint < 0)
+            PlayerManager.instance.currentHealth -= damage;
+            if(PlayerManager.instance.currentHealth < 0)
             {
                 PlayerManager.instance.Die();
             }

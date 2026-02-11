@@ -12,6 +12,5 @@ public static class GameEvent
 
     // Upgrade Event
     public static Action OnPlayerUpgrade;
-
-    public static Action<UpgradeType> OnPlayerUpgradeUI;
+    public static Action<AttributeUpgradeType> OnPlayerUpgradeUI;
 }

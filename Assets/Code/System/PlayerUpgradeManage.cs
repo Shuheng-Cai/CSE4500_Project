@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum UpgradeType
+public enum AttributeUpgradeType
 {
     HP,
     Strength,
@@ -12,18 +12,18 @@ public enum UpgradeType
 public class PlayerUpgradeManage : MonoBehaviour
 {
     public static PlayerUpgradeManage instance;
-    public Dictionary<UpgradeType, Action> applyMap;
+    public Dictionary<AttributeUpgradeType, Action> applyMap;
 
     public float upgradeCost;
 
     // Method
     void Awake()
     {
-        applyMap = new Dictionary<UpgradeType, Action>
+        applyMap = new Dictionary<AttributeUpgradeType, Action>
         {
-            { UpgradeType.HP, () => {PlayerManager.instance.MaxHealth += 1f;  GameEvent.OnPlayerUpgradeUI.Invoke(UpgradeType.HP);}},
-            { UpgradeType.Strength,  () => {PlayerManager.instance.Strength *= 1 + 0.01f;  GameEvent.OnPlayerUpgradeUI.Invoke(UpgradeType.Strength);} },
-            { UpgradeType.Speed, () => {PlayerManager.instance.Speed *= 1 + 0.01f; GameEvent.OnPlayerUpgradeUI.Invoke(UpgradeType.Strength);}},
+            { AttributeUpgradeType.HP, () => {PlayerManager.instance.MaxHealth += 1f;  GameEvent.OnPlayerUpgradeUI.Invoke(AttributeUpgradeType.HP);}},
+            { AttributeUpgradeType.Strength,  () => {PlayerManager.instance.Strength *= 1 + 0.01f;  GameEvent.OnPlayerUpgradeUI.Invoke(AttributeUpgradeType.Strength);} },
+            { AttributeUpgradeType.Speed, () => {PlayerManager.instance.Speed *= 1 + 0.01f; GameEvent.OnPlayerUpgradeUI.Invoke(AttributeUpgradeType.Strength);}},
         };
     }
     void OnEnable()
@@ -41,18 +41,19 @@ public class PlayerUpgradeManage : MonoBehaviour
         ApplyUpgrade(ChooseUpgrade());
     }
 
-    public void ApplyUpgrade(UpgradeType type)
+    public void ApplyUpgrade(AttributeUpgradeType type)
     {
-        if (GoldManager.instance.currentGold - upgradeCost >= 0)
+        if (GoldManager.instance.CostCoin(upgradeCost))
         {
             applyMap[type].Invoke();
+            upgradeCost += 1;
         }
     }
 
-    public UpgradeType ChooseUpgrade()
+    public AttributeUpgradeType ChooseUpgrade()
     {
-        Array values = Enum.GetValues(typeof(UpgradeType));
-        return (UpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        Array values = Enum.GetValues(typeof(AttributeUpgradeType));
+        return (AttributeUpgradeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
     }
 
     public void ResetUpgradeCost()

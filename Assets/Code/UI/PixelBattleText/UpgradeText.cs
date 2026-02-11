@@ -21,7 +21,7 @@ public class UpgradeText : MonoBehaviour
         GameEvent.OnPlayerUpgradeUI -= UpgradeUI;
     }
 
-    public void UpgradeUI(UpgradeType upgradeType)
+    public void UpgradeUI(AttributeUpgradeType upgradeType)
     {
         var text = upgradeType.ToString();
 

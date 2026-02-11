@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // State Tracking
     public GameState currentState {get; private set;}
     public float battleTimeCounter;
-    private bool canCountTime;
+    private bool canCountBattleTime;
     public int currentLevel;
 
     // Method
@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canCountTime)
+        if (canCountBattleTime)
         {
-            StartTimer();
+            StartBattleTimer();
         }
         
     }
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void EnterStore()
     {
-        canCountTime = false;
+        canCountBattleTime = false;
         currentState = GameState.Store;
         SceneManager.LoadScene("Store");
         PlayerManager.instance.EnterStore();
@@ -100,8 +100,8 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Battle")
         {
-            PlayerManager.instance.ResetPlayerPosition();
-            canCountTime = true;
+            PlayerManager.instance.ResetPlayerInBattle();
+            canCountBattleTime = true;
         }
     }
 
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.LoadScene("Battle");
         currentLevel += 1;
-        canCountTime = true;
+        canCountBattleTime = true;
     }
 
     public void CharacterChangePage()
@@ -124,7 +124,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("CharacterChoose");
     }
 
-    void StartTimer()
+    // Start battle -> start timer and win this round
+    void StartBattleTimer()
     {
         battleTimeCounter += Time.fixedDeltaTime;
         if(battleTimeCounter > everyLevelTime)
@@ -134,6 +135,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // When player die
     public void EnterGameOver()
     {
         StopAllCoroutines();

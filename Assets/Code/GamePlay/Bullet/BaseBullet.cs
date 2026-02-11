@@ -14,17 +14,17 @@ public abstract class BaseBullet : MonoBehaviour
     public BulletAnim bulletAnim;
 
     [HideInInspector]public float damage;
+    [HideInInspector]public BulletType bulletType = BulletType.Normal;
     [HideInInspector]public float speed;
     public GameObject player;
     [HideInInspector]public float lifeTime = 3f;
-    [HideInInspector]public bool canPenetrate = false;
     [HideInInspector]public bool canMove = true;
 
     public void Init(BulletData bulletData, Vector3 mouseWorldPos)
     {
         this.speed = bulletData.speed;
         this.lifeTime = bulletData.lifeTime;
-        this.canPenetrate = bulletData.canPenetrate;
+        this.bulletType = bulletData.bulletType;
         this.damage = bulletData.damage * PlayerManager.instance.Strength;
     }
 
@@ -65,7 +65,7 @@ public abstract class BaseBullet : MonoBehaviour
 
     public virtual void OnHitEnemy()
     {
-        if(!canPenetrate)
+        if(bulletType == BulletType.Normal)
             Destroy(gameObject);
     }
 }

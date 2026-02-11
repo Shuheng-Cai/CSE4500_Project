@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerPrefab;
 
     // Make it List
-    public List<BulletData> currentBullets;
+    public List<BulletData> currentNormalBullets;
     public List<BulletData> currentLasers;
     public GameObject player {get; private set;}
 
@@ -21,13 +21,16 @@ public class PlayerManager : MonoBehaviour
     // Player Attributes
     [Header("Player Attribute")]
     public float MaxHealth;
+    public float currentHealth;
     public float Speed;
     public float Strength;
 
     // StateTracking
     public bool invulnerable = false;
     public bool playerAlive;
-    public bool enterBattle;
+    public bool isEnterBattle;
+    public bool inUpgradeArea = false;
+    public bool inHealingArea = false;
     
     // Method
     void Awake()
@@ -35,6 +38,7 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
 
+    // Change the character of Player
     public void ChangeCharacter(CharacterData character)
     {
         currentCharacter = character;
@@ -46,33 +50,34 @@ public class PlayerManager : MonoBehaviour
         Debug.Log(character.StartCoin);
     }
 
+    // Generate Player and add different bullet type to list
     public void PlayerGenerate()
     {
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        currentHealth = MaxHealth;
         playerAlive = true;
 
-        if (currentCharacter.BaseBullet.isLaser)
+        if (currentCharacter.BaseBullet.bulletType == BulletType.Laser)
         {
             currentLasers.Add(currentCharacter.BaseBullet);
         }
 
         else 
         {
-            currentBullets.Add(currentCharacter.BaseBullet);
+            currentNormalBullets.Add(currentCharacter.BaseBullet);
         }
 
         player.GetComponent<Animator>().runtimeAnimatorController = currentCharacter.CharacterAnimController;
         DontDestroyOnLoad(player);
     }
 
-    // TODO: enter battle in other place
-    public void ResetPlayerPosition()
+    public void ResetPlayerInBattle()
     {
         player.transform.position = Vector2.zero;
-        new WaitForSeconds(1f);
-        enterBattle = true;
+        isEnterBattle = true;
     }
 
+    // Enter other level
     public void EnterStore()
     {
         player.transform.position = Vector2.zero;
@@ -80,9 +85,19 @@ public class PlayerManager : MonoBehaviour
 
     public void EnterBattle()
     {
-        enterBattle = false;
+        isEnterBattle = false;
     }
 
+    // Player Hit -> Player Invulnerable
+    public IEnumerator SetPlayerInvulnerable()
+    {
+        invulnerable = true;
+        player.GetComponent<PlayerAnim>().isHit();
+        yield return new WaitForSeconds(1f);
+        invulnerable = false;
+    }
+
+    // When Player Die
     public void Die()
     {
         playerAlive = false;
@@ -90,11 +105,33 @@ public class PlayerManager : MonoBehaviour
         Destroy(player);
     }
 
-    public IEnumerator SetPlayerInvulnerable()
+    // player heal / upgrade
+    public void IsHealing()
     {
-        invulnerable = true;
-        player.GetComponent<PlayerAnim>().isHit();
-        yield return new WaitForSeconds(1f);
-        invulnerable = false;
+        StartCoroutine(PlayerHeal());
+    }
+
+    public IEnumerator PlayerHeal()
+    {
+        if(GoldManager.instance.CostCoin(0.1f) && currentHealth < MaxHealth)
+        {
+            currentHealth = currentHealth + 1 < MaxHealth ? currentHealth + 1 : MaxHealth;
+            yield return new WaitForSeconds(0.1f);
+            if (inHealingArea)
+                StartCoroutine(PlayerHeal());
+        }
+    }
+
+    public void IsUpgrading()
+    {
+        StartCoroutine(PlayerUpgrade());
+    }
+
+    IEnumerator PlayerUpgrade()
+    {
+        GameEvent.OnPlayerUpgrade.Invoke();
+        yield return new WaitForSeconds(0.5f);
+        if (inUpgradeArea)
+            StartCoroutine(PlayerUpgrade());
     }
 }
