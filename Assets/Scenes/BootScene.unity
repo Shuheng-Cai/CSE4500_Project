@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2619e75171c2a4bb7abed0a64cc1ba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGold: 0
   coinDropTable: {fileID: 11400000, guid: cbd8da8fcccd0cb49b76910ed81d6891, type: 2}
 --- !u!114 &870328697
 MonoBehaviour:
@@ -169,11 +168,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCharacter: {fileID: 11400000, guid: 0401f24811154644582d9629f8d055e5, type: 2}
   playerPrefab: {fileID: 1709417532716060746, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
-  currentBullets: []
+  currentNormalBullets: []
   currentLasers: []
-  enterBattle: 0
+  MaxHealth: 0
+  currentHealth: 0
+  Speed: 0
+  Strength: 0
   invulnerable: 0
   playerAlive: 0
+  isEnterBattle: 0
+  inUpgradeArea: 0
+  inHealingArea: 0
 --- !u!114 &870328698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acdce138b06843b7956fbed64b5c3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everyLevelTime: 120
+  everyLevelTime: 1
   battleTimeCounter: 0
   currentLevel: 0
 --- !u!4 &870328699

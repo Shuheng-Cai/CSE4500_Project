@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Fall
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 19585fb36e15483409ec14df77f3bc7c, type: 3}
+  - {fileID: 21300000, guid: a9952494e78f7234fac70fb289c6f7c2, type: 3}
+  - {fileID: 21300000, guid: 3563ddfa4db4bf940a2612aaaec1ffee, type: 3}
+  - {fileID: 21300000, guid: 7ded084ee45c81043b12b7c88b99d9a8, type: 3}
+  - {fileID: 21300000, guid: 25dbfab4ec0a51740b85278722c3ba87, type: 3}
+  - {fileID: 21300000, guid: 46ef8d78ee8445b408208dd39bf2933c, type: 3}
+  - {fileID: 21300000, guid: 348344384db78464bace165f14eb135e, type: 3}
+  - {fileID: 21300000, guid: 248d3cab514886b4eb178ff2eeba22e6, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
