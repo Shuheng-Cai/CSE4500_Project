@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.1754, y: -3.3193, z: 0.03911341}
-  m_LocalScale: {x: 2.3, y: 2.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -207,6 +207,7 @@ MonoBehaviour:
   damage: 0
   isMove: 0
   currentHealth: 0
+  invulnerable: 0
   smallMushroomPrefab: {fileID: 4745737064178577861, guid: 41f92940b6b12c94286dd57eb908b7c8, type: 3}
   splitCount: 2
   smallMushroomSpawnSeperation: 1

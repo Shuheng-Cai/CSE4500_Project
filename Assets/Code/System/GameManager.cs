@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (canCountBattleTime)
         {
             StartBattleTimer();
+            currentState = GameState.Battle;
         }
         
     }

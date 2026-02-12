@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        speed = PlayerManager.instance.currentCharacter.BaseSpeed;
     }
 
     void Update()
     {
         Movement();
+        speed = PlayerManager.instance.currentCharacter.BaseSpeed;
     }
 
     // Control player to move

@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
     // StateTracking
     public bool invulnerable = false;
     public bool playerAlive;
-    public bool isEnterBattle;
+    public bool canShoot;
     public bool inUpgradeArea = false;
     public bool inHealingArea = false;
     
@@ -74,18 +74,20 @@ public class PlayerManager : MonoBehaviour
     public void ResetPlayerInBattle()
     {
         player.transform.position = Vector2.zero;
-        isEnterBattle = true;
+        canShoot = true;
+        GameEvent.ShootEachBattleLevel.Invoke();
     }
 
     // Enter other level
     public void EnterStore()
     {
         player.transform.position = Vector2.zero;
+        canShoot = false;
     }
 
     public void EnterBattle()
     {
-        isEnterBattle = false;
+        canShoot = true;
     }
 
     // Player Hit -> Player Invulnerable

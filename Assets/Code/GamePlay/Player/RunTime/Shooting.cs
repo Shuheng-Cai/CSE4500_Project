@@ -12,9 +12,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     // Outlet
-    public int bulletType;
     public Vector2 shootPosition; // record the shooting postion(Player transform)
-    public bool canShoot; // whether player can shoot
     public Quaternion bulletRotation;
     public Vector3 mouseWorldPos;
 
@@ -23,6 +21,16 @@ public class Shooting : MonoBehaviour
     private float scalex;
 
     // Method
+    void OnEnable()
+    {
+        GameEvent.ShootEachBattleLevel += FirstTimeEachLevel;
+    }
+
+    void OnDisable()
+    {
+        GameEvent.ShootEachBattleLevel -= FirstTimeEachLevel;
+    }
+
     public void MouseToPlayer()
     {
         Vector2 mousePosition = Input.mousePosition;
@@ -43,30 +51,30 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         scalex = transform.localScale.x;
-        canShoot = true;
         faceDir = 1;
         MouseToPlayer();
     }
     
     public void Update()
     {
-        if (PlayerManager.instance.isEnterBattle)
-        {
-            if (canShoot)
-            {
-                StartCoroutine(Shoot());
-            }
-
-            foreach(var i in PlayerManager.instance.currentLasers)
-            {
-                GameObject bullet = Instantiate(i.bulletPrefeb, transform.position, bulletRotation);
-                bullet.GetComponent<BaseBullet>().Init(i, mouseWorldPos);
-            }
-            
-            PlayerManager.instance.EnterBattle();
-        }
         shootPosition = gameObject.transform.position;
         MouseToPlayer();
+    }
+
+    public void FirstTimeEachLevel()
+    {
+        if (PlayerManager.instance.canShoot)
+        {
+            StartCoroutine(Shoot());
+        }
+
+        foreach(var i in PlayerManager.instance.currentLasers)
+        {
+            GameObject bullet = Instantiate(i.bulletPrefeb, transform.position, bulletRotation);
+            bullet.GetComponent<BaseBullet>().Init(i, mouseWorldPos);
+        }
+        
+        PlayerManager.instance.EnterBattle();
     }
 
     // after spawn seconds, shoot once
@@ -79,6 +87,8 @@ public class Shooting : MonoBehaviour
             bullet.GetComponent<BaseBullet>().Init(currentBulletData, mouseWorldPos);
         }
         yield return new WaitForSeconds(1f);
-        StartCoroutine(Shoot());
+
+        if(PlayerManager.instance.canShoot)
+            StartCoroutine(Shoot());
     }
 }

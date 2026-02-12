@@ -403,7 +403,7 @@ SpriteRenderer:
   m_SortingLayerID: 696217517
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e1d887deafb7a45c2bc61615cc0bd355, type: 3}
+  m_Sprite: {fileID: 1697142299, guid: fd6f448bc18e6864bb8cd8a66735d986, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -464,11 +464,11 @@ MonoBehaviour:
   runNumber: 7
   origin: {x: 0, y: 0, z: 0}
   tilemap: {fileID: 192195787}
-  wallTile: {fileID: 11400000, guid: 9ed4252d15b0147eabc80212356f7172, type: 2}
-  pathTile: {fileID: 11400000, guid: e50e4bcc850244240801c4f4a197483b, type: 2}
+  wallTile: {fileID: 11400000, guid: 987c365910aac41e79c2c5e321fe2c15, type: 2}
+  pathTile: {fileID: 11400000, guid: 9d75fbe39d4124d5e887cc6e20a36c69, type: 2}
   endPointTile: {fileID: 11400000, guid: 4eb982618423842aabdd661d9a7cce7d, type: 2}
-  wallSize: 2
-  pathSize: 1
+  wallSize: 5
+  pathSize: 5
   mazeWidth: 20
   mazeHeight: 20
   mazeTilemapRenderer: {fileID: 138277773}
@@ -549,7 +549,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 16.969559
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -574,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 1505701020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 2.05, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
