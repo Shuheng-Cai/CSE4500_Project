@@ -11,17 +11,4 @@ public class PlayerState : MonoBehaviour
     {
         instance = this;
     }
-
-    public void TakeDamage(float damage)
-    {
-        if (!PlayerManager.instance.invulnerable)
-        {
-            PlayerManager.instance.currentHealth -= damage;
-            if(PlayerManager.instance.currentHealth < 0)
-            {
-                PlayerManager.instance.Die();
-            }
-            StartCoroutine(PlayerManager.instance.SetPlayerInvulnerable());
-        }
-    }
 }

@@ -136,4 +136,18 @@ public class PlayerManager : MonoBehaviour
         if (inUpgradeArea)
             StartCoroutine(PlayerUpgrade());
     }
+
+    // TakeDamage
+    public void TakeDamage(float damage)
+    {
+        if (!invulnerable)
+        {
+            currentHealth -= damage;
+            if(currentHealth < 0)
+            {
+                Die();
+            }
+            StartCoroutine(SetPlayerInvulnerable());
+        }
+    }
 }

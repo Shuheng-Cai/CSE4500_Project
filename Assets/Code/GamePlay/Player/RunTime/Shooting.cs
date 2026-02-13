@@ -17,8 +17,7 @@ public class Shooting : MonoBehaviour
     public Vector3 mouseWorldPos;
 
     // State Tracking
-    private int faceDir;
-    private float scalex;
+    SpriteRenderer sr;
 
     // Method
     void OnEnable()
@@ -38,20 +37,14 @@ public class Shooting : MonoBehaviour
         mouseWorldPos.z = 0f;
         Vector3 direction = mouseWorldPos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
         bulletRotation = Quaternion.Euler(0, 0, angle);
 
-        if (faceDir * direction.x < 0)
-        {
-            faceDir = -faceDir;
-            transform.localScale = new Vector3(faceDir * scalex, transform.localScale.y);
-        }
+        sr.flipX = direction.x < 0;
     }
 
     void Start()
     {
-        scalex = transform.localScale.x;
-        faceDir = 1;
+        sr = GetComponent<SpriteRenderer>();
         MouseToPlayer();
     }
     

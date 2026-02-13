@@ -34,11 +34,7 @@ public class BeeBullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            var player = collision.GetComponent<PlayerState>();
-            if (player != null)
-            {
-                player.TakeDamage(damage);
-            }
+            PlayerManager.instance.TakeDamage(damage);
 
             Destroy(gameObject);
         }

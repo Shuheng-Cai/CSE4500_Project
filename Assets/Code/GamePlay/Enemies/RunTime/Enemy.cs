@@ -70,13 +70,9 @@ public abstract class Enemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.transform.GetComponent<PlayerState>())
+        if (collision.transform.CompareTag("Player"))
         {
-            var player = collision.transform.GetComponent<PlayerState>();
-            if (player != null)
-            {
-                player.TakeDamage(damage);
-            }
+            PlayerManager.instance.TakeDamage(damage);
 
             OnHitEnemy();
         }

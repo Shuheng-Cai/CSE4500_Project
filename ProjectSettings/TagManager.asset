@@ -46,6 +46,9 @@ TagManager:
   - name: TileMap
     uniqueID: 2111128797
     locked: 0
+  - name: Enemy
+    uniqueID: 221255313
+    locked: 0
   - name: Player
     uniqueID: 696217517
     locked: 0
@@ -54,4 +57,7 @@ TagManager:
     locked: 0
   - name: Buttom
     uniqueID: 1728643601
+    locked: 0
+  - name: Canvas
+    uniqueID: 399662283
     locked: 0

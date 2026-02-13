@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5520023281727994899}
   - component: {fileID: 7165969723864006318}
   - component: {fileID: 2517155845958988621}
-  - component: {fileID: 4337485672557148762}
   - component: {fileID: 4033636067204717750}
   m_Layer: 0
   m_Name: Enemy - Mushroom
@@ -75,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 221255313
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -6367560908665664636, guid: e9208ba638f0947669b6d049e0b1d19e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.28, y: 0.21}
+  m_Offset: {x: -0.021535158, y: -0.0565297}
+  m_Size: {x: 1.055265, y: 1.4698161}
   m_Direction: 0
 --- !u!95 &2517155845958988621
 Animator:
@@ -172,21 +171,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4337485672557148762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7663493155607065391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
 --- !u!114 &4033636067204717750
 MonoBehaviour:
   m_ObjectHideFlags: 0
