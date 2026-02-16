@@ -11,7 +11,8 @@
   - Ghost: Invulnerable every 5 seconds.
   - Bee: Shoot to Player.
   - Bunny: Basic
-  - ....
+  - Rhino: Charge attack
+  - Mushroom: Split into small mushrooms
 
 ## Rewards
 - Survival Rewards: Every 30 seconds, player upgrade.
