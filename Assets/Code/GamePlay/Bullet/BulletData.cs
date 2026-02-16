@@ -4,6 +4,7 @@ public enum BulletType
 {
     Normal,     // stright and hit
     Laser,      // only trigger once when player generate
+    Rocket,     // AOE damage
 }
 [CreateAssetMenu(menuName = "Game/BulletData")]
 public class BulletData : ScriptableObject
