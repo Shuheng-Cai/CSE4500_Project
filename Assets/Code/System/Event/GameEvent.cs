@@ -12,8 +12,9 @@ public static class GameEvent
 
     // Upgrade Event
     public static Action OnPlayerUpgrade;
+    public static Action<AttributeUpgradeType> OnPlayerUpgradeUI;
 
     // Shooting Event
     public static Action ShootEachBattleLevel;
-    public static Action<AttributeUpgradeType> OnPlayerUpgradeUI;
+  
 }

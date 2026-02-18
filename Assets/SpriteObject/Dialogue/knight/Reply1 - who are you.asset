@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8822f6b06fa30498d676301ad21160, type: 3}
-  m_Name: RedCoin
+  m_Script: {fileID: 11500000, guid: 309512c668d9e5c4fbfd9013e28f380d, type: 3}
+  m_Name: Reply1 - who are you
   m_EditorClassIdentifier: 
-  value: 5
-  coin: {fileID: 150670822858483781, guid: 801e0d13566bbb149b561d5896b3fea7, type: 3}
+  dialogues:
+  - I am a knight in level 4. I earned 60 coins now. The prisoner told me not to
+    enter level 5. But I am very confused about that.
+  responses: []

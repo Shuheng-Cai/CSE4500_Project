@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309512c668d9e5c4fbfd9013e28f380d, type: 3}
+  m_Name: Hello
+  m_EditorClassIdentifier: 
+  dialogues:
+  - Hello, I am a knight from XXX. You are new here right?
+  - There is a gym where you can upgrade here. (Increase your HP, Strength and Speed)
+  - And a spring to heal.
+  - There is a prisoner near the spring. He seems know much more about the world
+    than me.
+  - Do you have any other questions?
+  responses:
+  - responseTextTitle: Who are you
+    dialogueData: {fileID: 11400000, guid: 9f2d1c4caf8f44f47b1ffc5f7ddfef68, type: 2}
+  - responseTextTitle: No
+    dialogueData: {fileID: 11400000, guid: 0a87b886a6da3468d96436d1ba3666c6, type: 2}

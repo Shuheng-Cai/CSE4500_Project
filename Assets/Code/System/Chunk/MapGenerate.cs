@@ -109,7 +109,6 @@ public class MapGenerate : MonoBehaviour
 
                 // For Docuration
                 int r = Random.Range(0, x + y);
-                Debug.Log(r);
                 if(r % 12 == 0)
                 {
                     tilesForDecoration[x + y * chunkSize] = TypeToDecoration[ChooseFromTileType(map[x,y])];
@@ -133,8 +132,7 @@ public class MapGenerate : MonoBehaviour
             }
         }
 
-        UnloadFarChunks(tilemapBase, GetPlayerChunk());
-        UnloadFarChunks(tilemapDecoration, GetPlayerChunk());
+        UnloadFarChunks(tilemapBase, tilemapDecoration, GetPlayerChunk());
     }
 
     void ClearChunk(Tilemap tilemap, Vector2Int coord)
@@ -152,7 +150,7 @@ public class MapGenerate : MonoBehaviour
     int unloadExtra = 1;
 
     // Clear all the far chunk
-    void UnloadFarChunks(Tilemap tilemap, Vector2Int center)
+    void UnloadFarChunks(Tilemap tilemapBase, Tilemap tilemapDecoration,  Vector2Int center)
     {
         int keep = viewRadius + unloadExtra;
         var toRemove = new List<Vector2Int>();
@@ -167,7 +165,8 @@ public class MapGenerate : MonoBehaviour
 
         foreach (var c in toRemove)
         {
-            ClearChunk(tilemap, c);
+            ClearChunk(tilemapBase, c);
+            ClearChunk(tilemapDecoration, c);
             _generated.Remove(c);
         }
     }

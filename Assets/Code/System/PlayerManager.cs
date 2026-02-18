@@ -31,11 +31,19 @@ public class PlayerManager : MonoBehaviour
     public bool canShoot;
     public bool inUpgradeArea = false;
     public bool inHealingArea = false;
+
+    [Header("Player Interact")]
+    public DialogueUI dialogueUI;
     
     // Method
     void Awake()
     {
         instance = this;
+    }
+
+    void Update()
+    {
+        SetDialogueUI();
     }
 
     // Change the character of Player
@@ -46,8 +54,6 @@ public class PlayerManager : MonoBehaviour
 
         MaxHealth = currentCharacter.BaseMaxHealthPoint; 
         Strength = currentCharacter.BaseStrength;
-
-        Debug.Log(character.StartCoin);
     }
 
     // Generate Player and add different bullet type to list
@@ -149,5 +155,11 @@ public class PlayerManager : MonoBehaviour
             }
             StartCoroutine(SetPlayerInvulnerable());
         }
+    }
+
+    // Set Dialogue
+    public void SetDialogueUI()
+    {
+        dialogueUI = DialogueUI.instance;
     }
 }

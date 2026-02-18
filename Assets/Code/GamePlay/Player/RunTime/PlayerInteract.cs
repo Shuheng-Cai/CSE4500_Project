@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private DialogueUI dialogueUI;
-    public DialogueUI DialogueUI => dialogueUI;
     public IInteractable interactable {get; set;}
 
+    // Update is called once per frame
     void Update()
+    {
+        Interact();
+    }
+
+    public void Interact()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {

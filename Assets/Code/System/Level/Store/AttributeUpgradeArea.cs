@@ -9,13 +9,13 @@ public class AttributeUpgradeArea : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            PlayerManager.instance.inUpgradeArea = true;
             PlayerManager.instance.IsUpgrading();
-            PlayerManager.instance.inHealingArea = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerManager.instance.inHealingArea = false;
+        PlayerManager.instance.inUpgradeArea = false;
     }
 }

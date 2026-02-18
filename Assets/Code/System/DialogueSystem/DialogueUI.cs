@@ -9,6 +9,8 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel; 
     [SerializeField] private DialogueData testDialogue;
 
+    public static DialogueUI instance;
+
     public bool isOpen {get; private set;}
 
     private TypewriteEffect typewriteEffect;
@@ -20,6 +22,7 @@ public class DialogueUI : MonoBehaviour
         responseHandler = GetComponent<ResponseHandler>();
         CloseDialogueBox();
         //ShowDialogue(testDialogue);
+        instance = this;
     }
 
     public void ShowDialogue(DialogueData dialogueData)

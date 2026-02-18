@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 870328698}
   - component: {fileID: 870328697}
   - component: {fileID: 870328696}
+  - component: {fileID: 870328700}
   m_Layer: 0
   m_Name: Game - Manager
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   canShoot: 0
   inUpgradeArea: 0
   inHealingArea: 0
+  dialogueUI: {fileID: 0}
 --- !u!114 &870328698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acdce138b06843b7956fbed64b5c3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everyLevelTime: 120
+  everyLevelTime: 60
   battleTimeCounter: 0
   currentLevel: 0
 --- !u!4 &870328699
@@ -209,6 +211,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870328700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870328695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e75b4478bee74f0e9d69f55ef0fe0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeCost: 0
 --- !u!1 &1870189230
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c142ba2c5ca27470aa047c423e7c0cb5, type: 3}
   m_Name: Bullet_FireBall
   m_EditorClassIdentifier: 
+  bulletType: 0
   lifeTime: 3
   bulletPrefeb: {fileID: 7612060573884825866, guid: b6cca2f45f27e4bcc82c8c08a441c5d7, type: 3}
-  damage: 10
+  damage: 100
   speed: 10
-  canPenetrate: 0
+  shootInterval: 0
+  isLaser: 0

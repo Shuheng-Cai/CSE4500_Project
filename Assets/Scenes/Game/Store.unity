@@ -5201,6 +5201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657783149}
   - component: {fileID: 657783150}
+  - component: {fileID: 657783151}
   m_Layer: 0
   m_Name: ExitArea
   m_TagString: Untagged
@@ -5252,7 +5253,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.117123604, y: -0.09760296}
@@ -5268,6 +5269,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0301418, y: 1.1952059}
   m_EdgeRadius: 0
+--- !u!114 &657783151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657783148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abf1d38a7e974e4999bf6420e6843f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1107343598
 GameObject:
   m_ObjectHideFlags: 0
@@ -5280,9 +5293,10 @@ GameObject:
   - component: {fileID: 1107343599}
   - component: {fileID: 1107343602}
   - component: {fileID: 1107343601}
+  - component: {fileID: 1107343603}
   m_Layer: 0
   m_Name: NPC - knight
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5384,7 +5398,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.25786686}
@@ -5402,7 +5416,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61b7713686f4814688d2cb4d5144d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: e79d9b2041db95d4eb658da6fb03aef7, type: 2}
+  dialogueData: {fileID: 11400000, guid: 52a589adf16944c36be9ac584c5bdccb, type: 2}
+--- !u!50 &1107343603
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107343598}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1168193216
 GameObject:
   m_ObjectHideFlags: 0
@@ -5799,9 +5840,10 @@ GameObject:
   - component: {fileID: 1608185784}
   - component: {fileID: 1608185788}
   - component: {fileID: 1608185787}
+  - component: {fileID: 1608185789}
   m_Layer: 0
   m_Name: NPC - Prisoner
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5917,7 +5959,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.011212349, y: -1.1660063}
@@ -5935,7 +5977,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61b7713686f4814688d2cb4d5144d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: e79d9b2041db95d4eb658da6fb03aef7, type: 2}
+  dialogueData: {fileID: 11400000, guid: 3daee32e1aa954646a13434c26359757, type: 2}
+--- !u!50 &1608185789
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608185783}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1614876325
 GameObject:
   m_ObjectHideFlags: 0

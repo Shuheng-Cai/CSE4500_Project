@@ -21,18 +21,20 @@ public class PlayerUpgradeManage : MonoBehaviour
     {
         applyMap = new Dictionary<AttributeUpgradeType, Action>
         {
-            { AttributeUpgradeType.HP, () => {PlayerManager.instance.MaxHealth += 1f;  GameEvent.OnPlayerUpgradeUI.Invoke(AttributeUpgradeType.HP);}},
-            { AttributeUpgradeType.Strength,  () => {PlayerManager.instance.Strength *= 1 + 0.01f;  GameEvent.OnPlayerUpgradeUI.Invoke(AttributeUpgradeType.Strength);} },
-            { AttributeUpgradeType.Speed, () => {PlayerManager.instance.Speed *= 1 + 0.01f; GameEvent.OnPlayerUpgradeUI.Invoke(AttributeUpgradeType.Strength);}},
+            { AttributeUpgradeType.HP, () => {PlayerManager.instance.MaxHealth += 1f; }},
+            { AttributeUpgradeType.Strength,  () => {PlayerManager.instance.Strength *= 1 + 0.01f; } },
+            { AttributeUpgradeType.Speed, () => {PlayerManager.instance.Speed *= 1 + 0.01f;}},
         };
     }
     void OnEnable()
     {
+        Debug.Log("PlayerUpgradeManage OnEnable");
         GameEvent.OnPlayerUpgrade += OnPlayerUpgrade;
     }
 
     void OnDisable()
     {
+        Debug.Log("PlayerUpgradeManage OnDisable");
         GameEvent.OnPlayerUpgrade -= OnPlayerUpgrade;
     }
 
