@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Hello
   m_EditorClassIdentifier: 
   dialogues:
-  - Hello, I am a knight from XXX. You are new here right?
-  - There is a gym where you can upgrade here. (Increase your HP, Strength and Speed)
+  - Hello, I am a knight from XXXX. You are new here right?
+  - There is a gym where you can upgrade here. (Increase your HP, Strength, and Speed)
   - And a spring to heal.
-  - There is a prisoner near the spring. He seems know much more about the world
-    than me.
+  - There is a prisoner near the spring. He seems to know much more about the world
+    than I do.
   - Do you have any other questions?
   responses:
   - responseTextTitle: Who are you
