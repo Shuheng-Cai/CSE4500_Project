@@ -11,7 +11,8 @@ public enum GameState
     Paused,
     GameOver,
     Character,
-    Store
+    Store,
+    Campsite
 }
 
 public class GameManager : MonoBehaviour
@@ -74,6 +75,13 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Store;
         SceneManager.LoadScene("Store");
         PlayerManager.instance.EnterStore();
+    }
+
+    public void EnterCampsite()
+    {
+        currentState = GameState.Campsite;
+        SceneManager.LoadScene("Campsite");
+        PlayerManager.instance.EnterCampsite();
     }
 
     // When Pause the game, only play stage

@@ -91,6 +91,13 @@ public class PlayerManager : MonoBehaviour
         canShoot = false;
     }
 
+    // Enter campsite
+    public void EnterCampsite()
+    {
+        player.transform.position = Vector2.zero;
+        canShoot = false;
+    }
+
     public void EnterBattle()
     {
         canShoot = true;
