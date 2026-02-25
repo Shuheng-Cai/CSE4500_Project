@@ -4,12 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/*
+    Generate Map Using Perlin Noise. Chunksize 16. Three type: Dust / Stone / Path
+    TODO: Bitmask to realize a complete chunk.
+*/
+
 public enum TileType
 {
     Dust,
     Stone,
     Path
 }
+
 public class MapGenerate : MonoBehaviour
 {
     public Transform generateCenter;

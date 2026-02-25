@@ -1,5 +1,9 @@
-
 using UnityEngine;
+
+/*
+    Dialogue Activator should be mounted on the Dialoguer.
+    DialogueData is needed in the inspector.
+*/
 
 public class DialogueActivator : MonoBehaviour, IInteractable
 {

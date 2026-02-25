@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/*
+    Maze level didn't install.
+*/
+
 public class PlayerMazeMove : MonoBehaviour
 {
 

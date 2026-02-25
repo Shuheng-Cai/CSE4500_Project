@@ -9,6 +9,12 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
+/*
+    Player Shooting. Depend on PlayerManager.
+    First Time shoot laser.
+    And constantly shoot normal bullet.
+*/
+
 public class Shooting : MonoBehaviour
 {
     // Outlet
@@ -67,7 +73,7 @@ public class Shooting : MonoBehaviour
             bullet.GetComponent<BaseBullet>().Init(i, mouseWorldPos);
         }
         
-        PlayerManager.instance.EnterBattle();
+        GameEvent.EnterBattle.Invoke();
     }
 
     // after spawn seconds, shoot once

@@ -3,6 +3,12 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
+/*
+    This is a basic Manager. It must be put in the inspecter in test scene.
+    Control Game Scene Change
+    Game flow
+*/
+
 public enum GameState
 {
     MainMenu,
@@ -74,14 +80,14 @@ public class GameManager : MonoBehaviour
         canCountBattleTime = false;
         currentState = GameState.Store;
         SceneManager.LoadScene("Store");
-        PlayerManager.instance.EnterStore();
+        GameEvent.EnterNoneBattleScene.Invoke();
     }
 
     public void EnterCampsite()
     {
         currentState = GameState.Campsite;
         SceneManager.LoadScene("Campsite");
-        PlayerManager.instance.EnterCampsite();
+        GameEvent.EnterNoneBattleScene.Invoke();
     }
 
     // When Pause the game, only play stage

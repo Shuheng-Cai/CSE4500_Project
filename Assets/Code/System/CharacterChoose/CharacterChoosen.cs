@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/*
+    TODO: Automaticly Generate Player Choose page.
+*/
+
 public class CharacterChoosen : MonoBehaviour
 {
     private CharacterData thisCharacter;

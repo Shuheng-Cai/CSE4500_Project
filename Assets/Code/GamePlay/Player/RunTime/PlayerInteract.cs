@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    This is PlayerInteract. Implement IInteractable interface and invoke it.
+    Interactable is set in DialogueActivate.
+*/
+
 public class PlayerInteract : MonoBehaviour
 {
     public IInteractable interactable {get; set;}

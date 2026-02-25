@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/*
+    This is a basic Manager. It must be put in the inspecter in test scene.
+    Control Player Generate / Heal / Upgrade
+    Event: Enter Battle Scenc / Enter None Battle Scene
+*/
+
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
@@ -34,8 +40,21 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Player Interact")]
     public DialogueUI dialogueUI;
-    
+
     // Method
+    // Subscribe Event
+    void OnEnable()
+    {
+        GameEvent.EnterNoneBattleScene += EnterNoneBattle;
+        GameEvent.EnterBattle += EnterBattle;
+    }
+
+    void OnDisable()
+    {
+        GameEvent.EnterNoneBattleScene -= EnterNoneBattle;
+        GameEvent.EnterBattle -= EnterBattle;
+    }
+
     void Awake()
     {
         instance = this;
@@ -84,15 +103,8 @@ public class PlayerManager : MonoBehaviour
         GameEvent.ShootEachBattleLevel.Invoke();
     }
 
-    // Enter other level
-    public void EnterStore()
-    {
-        player.transform.position = Vector2.zero;
-        canShoot = false;
-    }
-
-    // Enter campsite
-    public void EnterCampsite()
+    // Enter None Battle Scene / Battle Scene
+    public void EnterNoneBattle()
     {
         player.transform.position = Vector2.zero;
         canShoot = false;
