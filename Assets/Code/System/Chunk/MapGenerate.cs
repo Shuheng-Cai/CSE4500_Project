@@ -90,7 +90,10 @@ public class MapGenerate : MonoBehaviour
     // Get the chunk where the player is.
     Vector2Int GetPlayerChunk()
     {
-        Vector3Int cell = tilemapBase.WorldToCell(PlayerManager.instance.player != null ?  PlayerManager.instance.player.transform.position : generateCenter.position);
+        Vector3 center = PlayerManager.instance != null && PlayerManager.instance.player != null
+            ? PlayerManager.instance.player.transform.position
+            : generateCenter != null ? generateCenter.position : Vector3.zero;
+        Vector3Int cell = tilemapBase.WorldToCell(center);
         int cx = Mathf.FloorToInt(cell.x / (float)chunkSize);
         int cy = Mathf.FloorToInt(cell.y / (float)chunkSize);
         return new Vector2Int(cx, cy);

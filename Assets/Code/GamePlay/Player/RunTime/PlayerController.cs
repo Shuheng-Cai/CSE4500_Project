@@ -20,8 +20,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        if (PlayerManager.instance == null || PlayerManager.instance.currentCharacter == null)
+        {
+            Debug.LogWarning("PlayerController: PlayerManager or currentCharacter is null!");
+            return;
+        }
         speed = PlayerManager.instance.currentCharacter.BaseSpeed;
+        Movement();
     }
 
     // Control player to move

@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
 {
     // Outlats
     public Vector3 target; 
-    private SpriteRenderer sprite;
+    protected SpriteRenderer sprite;
     public Animator animator;    
     public EnemyData enemyData;
     public Rigidbody2D _rb;

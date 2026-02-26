@@ -9,9 +9,7 @@ public class Rhino : Enemy
     public float chargeAttackSpeedMultiplier = 2f;
     public float chargeAttackDamageMultiplier = 2f;
     
-    private SpriteRenderer sprite;
-    
-    protected override void Move() 
+    protected override void Move()
     {
 
         Vector3 direction = (target - transform.position).normalized;
@@ -21,8 +19,6 @@ public class Rhino : Enemy
     protected override void Awake()
     {
         base.Awake();
-        sprite = GetComponent<SpriteRenderer>();
-        
         StartCoroutine(ChargeAttack());
         
     }

@@ -22,7 +22,7 @@ public class CoinDropTable : ScriptableObject
         double current = 0;
         foreach(var coin in coins)
         {
-            current += Math.Pow(1 / coin.value, 2);
+            current += Math.Pow(coin.value, -1);
             if (randomWeight <= current)
             {
                 return coin.coin;
