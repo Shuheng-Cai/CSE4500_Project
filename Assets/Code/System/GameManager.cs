@@ -18,7 +18,8 @@ public enum GameState
     GameOver,
     Character,
     Store,
-    Campsite
+    Campsite,
+    Bonus
 }
 
 public class GameManager : MonoBehaviour
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     // Configuration
     public float everyLevelTime;
+    public float bonusSceneRate = 1f;
     
     // State Tracking
     public GameState currentState {get; private set;}
@@ -90,6 +92,13 @@ public class GameManager : MonoBehaviour
         GameEvent.EnterNoneBattleScene.Invoke();
     }
 
+    public void EnterBonusScene() {
+        canCountBattleTime = false;
+        currentState = GameState.Bonus;
+        SceneManager.LoadScene("Bonus");
+        GameEvent.EnterNoneBattleScene.Invoke();
+    }
+
     // When Pause the game, only play stage
     public void PauseGame()
     {
@@ -146,6 +155,23 @@ public class GameManager : MonoBehaviour
         if(battleTimeCounter > everyLevelTime)
         {
             battleTimeCounter = 0;
+
+            OnLevelFinished(); //Replacing the workflow to OnLevel Finished
+            // EnterStore();
+        }
+    }
+    
+    //Call when a level is finished
+    private void OnLevelFinished() {
+        battleTimeCounter = 0f;
+        canCountBattleTime = false;
+        
+        float roll = UnityEngine.Random.Range(0f, 1f);
+
+        if (roll < bonusSceneRate) {
+            EnterBonusScene();
+        }
+        else {
             EnterStore();
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2065004846274873679}
   m_Layer: 0
   m_Name: AOERangeIndicator
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a6f5d4f68cc8146bc2fc4340b78c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: -1
   duration: 0.5
   color: {r: 1, g: 0, b: 0, a: 0.3}

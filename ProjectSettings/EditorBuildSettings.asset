@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/Campsite.unity
     guid: c96120ca492054f8b9d6fdab2fbc95fa
+  - enabled: 1
+    path: Assets/Scenes/Game/Bonus.unity
+    guid: a33c9f52167845344919ebc1701e6c0b
   m_configObjects: {}
