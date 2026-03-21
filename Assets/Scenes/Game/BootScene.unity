@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   everyLevelTime: 60
+  bonusSceneRate: 0.25
   battleTimeCounter: 0
   currentLevel: 0
 --- !u!4 &870328699
