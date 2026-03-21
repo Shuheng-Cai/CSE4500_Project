@@ -25,6 +25,19 @@ public class ChestInteractable : MonoBehaviour, IInteractable
 
     public void Interact(PlayerInteract player)
     {
-        Debug.Log("Chest opened!");
+        DialogueUI dialogueUI = PlayerManager.instance.dialogueUI;
+        if (dialogueUI == null)
+        {
+            Debug.LogWarning("No DialogueUI found. Make sure the Dialogue prefab is in the scene.");
+            return;
+        }
+
+        string[] dialogues = new string[]
+        {
+            "Looks like you have " + GoldManager.instance.currentGold + " coins collected!",
+            "Return to the store area by following the stone path that leads up and away from this campsite.",
+            "There you'll be able to put your hard-earned coins to use."
+        };
+        dialogueUI.ShowDialogue(dialogues);
     }
 }

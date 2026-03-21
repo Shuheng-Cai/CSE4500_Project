@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    This is a basic Manager. It must be put in the inspecter in test scene.
+    This is a basic Manager. It must be put in the inspector in the test scene.
     Gold Add and Cost
     Gold Generate
 */
