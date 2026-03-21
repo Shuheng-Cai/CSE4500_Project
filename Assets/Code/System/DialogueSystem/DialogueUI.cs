@@ -32,6 +32,13 @@ public class DialogueUI : MonoBehaviour
         StartCoroutine(StepThroughDialogue(dialogueData));
     }
 
+    public void ShowDialogue(string[] dialogues)
+    {
+        isOpen = true;
+        dialogueBox.SetActive(true);
+        StartCoroutine(StepThroughDialogue(dialogues));
+    }
+
     private IEnumerator StepThroughDialogue(DialogueData dialogueData)
     {
         for(int i = 0; i < dialogueData.Dialogues.Length; i++)
@@ -44,7 +51,7 @@ public class DialogueUI : MonoBehaviour
             
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
 
-            yield return null;  
+            yield return null;
 
             if(i == dialogueData.Dialogues.Length - 1 && dialogueData.HasResponses) break;
         }
@@ -55,9 +62,25 @@ public class DialogueUI : MonoBehaviour
         }
 
         else
-        {   
+        {
             CloseDialogueBox();
         }
+    }
+
+    private IEnumerator StepThroughDialogue(string[] dialogues)
+    {
+        for (int i = 0; i < dialogues.Length; i++)
+        {
+            yield return RunTypingEffect(dialogues[i]);
+
+            yield return null;
+
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Mouse0));
+
+            yield return null;
+        }
+
+        CloseDialogueBox();
     }
 
     private IEnumerator RunTypingEffect(string dialogue)
