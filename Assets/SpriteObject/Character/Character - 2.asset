@@ -18,3 +18,6 @@ MonoBehaviour:
   BaseStrength: 1
   StartCoin: 5
   BaseBullet: {fileID: 11400000, guid: 3b93fc21d26614e04b056191a2563768, type: 2}
+  CharacterImage: {fileID: -1880538335, guid: 9a501fd4773a9f249862448d62f1a695, type: 3}
+  BulletImage: {fileID: -507085014956662665, guid: be9e2d4c1e5d74d79aff4c94c6fa9e1c, type: 3}
+  Name: JOY

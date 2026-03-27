@@ -18,3 +18,6 @@ MonoBehaviour:
   BaseStrength: 1
   StartCoin: 6
   BaseBullet: {fileID: 11400000, guid: dc868a3830f34476abe12d101aa812c9, type: 2}
+  CharacterImage: {fileID: -1316633256, guid: fd6f448bc18e6864bb8cd8a66735d986, type: 3}
+  BulletImage: {fileID: -8107756360131446413, guid: ef278ded950a441de9823ccdeb84f6b3, type: 3}
+  Name: ANDY
