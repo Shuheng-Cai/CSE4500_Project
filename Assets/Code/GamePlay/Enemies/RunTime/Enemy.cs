@@ -51,6 +51,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        TextManager.instance.CreateFloatingText(damage.ToString(), transform.position);
         if (!invulnerable)
         {
             currentHealth = currentHealth - damage;
