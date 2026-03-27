@@ -11,4 +11,8 @@ public class CharacterData : ScriptableObject
     public float BaseStrength;
     public float StartCoin;
     public BulletData BaseBullet;
+
+    public Sprite CharacterImage;
+    public Sprite BulletImage;
+    public string Name;
 }
