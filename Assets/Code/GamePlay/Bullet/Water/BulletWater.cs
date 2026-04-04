@@ -17,7 +17,6 @@ public class BulletWater : BaseBullet
         transform.position = player.transform.position;
         Quaternion bulletRotation = Quaternion.Euler(0, 0, angle);
         transform.rotation = bulletRotation;
-        transform.localScale = new Vector3(Mathf.Abs(dir.x) > Mathf.Abs(dir.y) ? Mathf.Abs(dir.x)  * 2.2f : Mathf.Abs(dir.y)  * 2.2f, 5, 1);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

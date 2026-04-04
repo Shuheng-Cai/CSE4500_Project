@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8a4fddf73d50394b935d92465b7d198, type: 3}
-  m_Name: Character - 2
+  m_Name: JACK
   m_EditorClassIdentifier: 
-  CharacterAnimController: {fileID: 9100000, guid: 905f8e85b09ab4121aa05f8baf13b6b6, type: 2}
+  CharacterAnimController: {fileID: 9100000, guid: 941e22cb37bb849928bd484935dddbc6, type: 2}
   BaseSpeed: 10
   BaseMaxHealthPoint: 100
   BaseStrength: 1
-  StartCoin: 5
-  BaseBullet: {fileID: 11400000, guid: 3b93fc21d26614e04b056191a2563768, type: 2}
-  CharacterImage: {fileID: -1880538335, guid: 9a501fd4773a9f249862448d62f1a695, type: 3}
-  BulletImage: {fileID: -507085014956662665, guid: be9e2d4c1e5d74d79aff4c94c6fa9e1c, type: 3}
-  Name: JOY
+  StartCoin: 6
+  BaseBullet: {fileID: 11400000, guid: 6c5b6ee650b8e0743994fb9e810b6225, type: 2}
+  CharacterImage: {fileID: 943453682, guid: 374d8285dd1514ce2a8be58203e6206d, type: 3}
+  BulletImage: {fileID: -394467816, guid: 1ad7895399453e04ab08b48e342ca123, type: 3}
+  Name: JACK

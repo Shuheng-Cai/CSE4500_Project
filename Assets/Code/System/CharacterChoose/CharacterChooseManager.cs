@@ -46,7 +46,7 @@ public class CharacterChooseManager : MonoBehaviour
             currentCharacterList.Add(CharacterList[i]);
         }
 
-        for(int i = 0; i < Mathf.Min(CharacterPanelList.Count, 2); i++)
+        for(int i = 0; i < Mathf.Min(CharacterPanelList.Count, 3); i++)
         {
             CharacterPanel characterPanel = CharacterPanelList[i];
             characterPanel.GetComponent<CharacterChoosen>().thisCharacter = currentCharacterList[i];

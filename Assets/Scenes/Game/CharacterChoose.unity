@@ -1074,6 +1074,7 @@ MonoBehaviour:
   CharacterList:
   - {fileID: 11400000, guid: 0401f24811154644582d9629f8d055e5, type: 2}
   - {fileID: 11400000, guid: dfc7493c6d6e148529fa95f49ae84549, type: 2}
+  - {fileID: 11400000, guid: 87fabebabe67b43acad3006df4b7939e, type: 2}
   characterPointerRight: 0
 --- !u!1001 &6101570407616474100
 PrefabInstance:

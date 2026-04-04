@@ -8,6 +8,8 @@ public class TextPool : MonoBehaviour
     public static TextPool instance;
     private readonly Queue<IFloatingText> floatingTexts = new Queue<IFloatingText>();
     [SerializeField] private GameObject text;
+    [SerializeField] private int maxTextInstances = 30;
+    private int createdCount;
 
     public GameObject worldCanvas;
 
@@ -27,6 +29,11 @@ public class TextPool : MonoBehaviour
     {
         if(floatingTexts.Count == 0)
         {
+            if (createdCount >= maxTextInstances)
+            {
+                return null;
+            }
+
             IFloatingText createdText = CreateInstance();
             if (createdText == null)
             {
@@ -60,6 +67,12 @@ public class TextPool : MonoBehaviour
             return null;
         }
 
+        if (worldCanvas == null)
+        {
+            Debug.LogError("TextPool is missing its worldCanvas reference.", this);
+            return null;
+        }
+
         GameObject gameObject = Instantiate(text, worldCanvas.transform);
         IFloatingText floatingText = gameObject.GetComponent<IFloatingText>();
 
@@ -70,6 +83,7 @@ public class TextPool : MonoBehaviour
             return null;
         }
 
+        createdCount++;
         gameObject.SetActive(false);
         return floatingText;
     }
