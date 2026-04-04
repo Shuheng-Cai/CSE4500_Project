@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
             PlayerManager.instance.ResetPlayerInBattle();
             canCountBattleTime = true;
         }
+
+        // Do not show battle scene HP Bar in the store scene
+        GameObject hpBar = GameObject.Find("Canvas 1/HPBar");
+        if (hpBar != null)
+            hpBar.SetActive(scene.name != "Store");
     }
 
     // Enter next level: first time: generate player | reset player position
