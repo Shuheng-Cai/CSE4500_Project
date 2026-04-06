@@ -168,6 +168,55 @@ Transform:
   - {fileID: 1508178513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &384408493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384408495}
+  - component: {fileID: 384408494}
+  m_Layer: 0
+  m_Name: Gold Generate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &384408494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384408493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c27d7ab9d0894568950d9be015af5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaCenter: {x: 0, y: 0}
+  areaSize: {x: 20.87, y: 15.14}
+  coinPrefab: {fileID: 4316475446269085230, guid: 5b761d0a771374d76be64dec8a5cd974, type: 3}
+  coinCount: 20
+  minDistance: 0.6
+--- !u!4 &384408495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384408493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.82, y: 0.88000005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &402222113
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +753,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302111167}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 320a2a9cd1cd04c92b0b3119bf5bd0d3, type: 3}
   m_Name: 
@@ -5508,3 +5557,4 @@ SceneRoots:
   - {fileID: 1302111172}
   - {fileID: 756440381}
   - {fileID: 704056423}
+  - {fileID: 384408495}

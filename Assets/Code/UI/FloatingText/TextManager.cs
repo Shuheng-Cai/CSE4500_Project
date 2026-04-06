@@ -30,7 +30,6 @@ public class TextManager : MonoBehaviour
         IFloatingText text = TextPool.instance.Get();
         if (text == null)
         {
-            Debug.LogError("TextPool could not provide a floating text instance.", this);
             return;
         }
 
