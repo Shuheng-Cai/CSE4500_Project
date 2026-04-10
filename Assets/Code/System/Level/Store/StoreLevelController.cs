@@ -6,6 +6,12 @@ public class StoreLevelController : MonoBehaviour
 {
     // Outlet
     public Transform exitStorePoint;
+    public GameObject hpBar;
+
+    void Start()
+    {
+        hpBar.SetActive(true);
+    }
 
     // Method
     

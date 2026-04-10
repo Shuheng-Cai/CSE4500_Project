@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class AttributeUpgradeArea : MonoBehaviour
 {
+    public GameObject upgradeUI;
     // Method
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            PlayerManager.instance.inUpgradeArea = true;
-            PlayerManager.instance.IsUpgrading();
+            upgradeUI.SetActive(true);
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerManager.instance.inUpgradeArea = false;
+        if (collision.tag == "Player")
+        {
+            upgradeUI.SetActive(false);
+        }
     }
 }

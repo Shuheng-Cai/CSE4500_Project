@@ -12,9 +12,25 @@ public class UI_HPBar : MonoBehaviour
     private Color Mid = new Color(1f, 0.853f, 0f);
     private Color Low = new Color(1f, 0.250f, 0.250f);
 
+    void OnEnable()
+    {
+        gameObject.SetActive(true);
+    }
+    void Awake()
+    {
+        gameObject.SetActive(true);
+        Debug.Log("UI_HPBar Awake");
+    }
+
+    void Start()
+    {
+        gameObject.SetActive(true);
+        Debug.Log("UI_HPBar Start");
+    }
+
     // Update is called once per frame
     void Update() {
-        if (PlayerManager.instance == null) return;
+        //if (PlayerManager.instance == null) return;
 
         float curHP = PlayerManager.instance.currentHealth;
         float maxHP = PlayerManager.instance.MaxHealth;
