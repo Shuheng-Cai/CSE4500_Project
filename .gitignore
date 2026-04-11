@@ -100,3 +100,4 @@ ServerData
 
 # Large audio files - use compressed formats (.m4a, .ogg, .mp3) instead
 *.wav
+*.wav.meta
