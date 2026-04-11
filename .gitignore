@@ -97,3 +97,6 @@ ServerData
 
 # Auto-generated scenes by play mode tests
 [Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Large audio files - use compressed formats (.m4a, .ogg, .mp3) instead
+*.wav
