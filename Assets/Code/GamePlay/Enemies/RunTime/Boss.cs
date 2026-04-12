@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -16,11 +17,18 @@ public class Boss : Enemy
     private BossState bossState = BossState.Walking;
     private float nextAttackTime;
     
-    [Header("Attack_360")]
+    [Header("Attack1: 360 Bullet")]
     public GameObject bulletPrefab;
     public int bulletCount360 = 36;
     public float bulletSpeed360 = 5f;
     public float bulletDamage360 = 10f;
+
+    [Header("Attack2: Charge and Jump")] 
+    public GameObject attackIndicator;
+    public float attackDelay;
+    public float attackRadius;
+    public float attackDamage;
+    
     
     protected override void Awake()
     {
@@ -42,11 +50,16 @@ public class Boss : Enemy
         if (bossState == BossState.Walking)
         {
             Move();
-
+            
+            //Randomly pick an attack
             if (Time.time >= nextAttackTime && bossState == BossState.Walking)
             {
-                //Randomly pick an attack
-                StartCoroutine(Attack_360Bullet());
+                int choice = Random.Range(0, 2);
+                switch (choice)
+                {
+                    case 0: StartCoroutine(Attack_360Bullet()); break;
+                    case 1: StartCoroutine(Attack_Charge_Jump()); break;
+                }
             }
         }
     }
@@ -58,15 +71,16 @@ public class Boss : Enemy
     }
     
     protected override void Die() {
-        
+
+        bossState = BossState.Dead;
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
         
-        StartCoroutine(BossDeath());
+        StartCoroutine(BossDie());
     }
     
-    private IEnumerator BossDeath()
-    {
+    private IEnumerator BossDie() {
+        
         animator.SetBool("isMove", false);
         speed = 0;
         animator.SetTrigger("isDead");
@@ -78,17 +92,14 @@ public class Boss : Enemy
         }
         
         base.Die();
-        
     }
     
-    protected override void OnHitEnemy()
-    {
+    protected override void OnHitEnemy() {
         if (bossState != BossState.Walking) return;
         StartCoroutine(CollisionAttack());
     }
     
-    private IEnumerator CollisionAttack()
-    {
+    private IEnumerator CollisionAttack() {
 
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
@@ -102,6 +113,16 @@ public class Boss : Enemy
         
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //Cool Attacks
     
     private IEnumerator Attack_360Bullet()
@@ -112,12 +133,12 @@ public class Boss : Enemy
 
         yield return new WaitForSeconds(0.7f);
 
-        float angleStep = 360f / bulletCount360;
+        float smallAngle = 360f / bulletCount360;
         for (int i = 0; i < bulletCount360; i++)
         {
-            float angle = i * angleStep * Mathf.Deg2Rad;
+            float angle = i * smallAngle * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            SpawnBullet(dir);
+            SpawnBullet(dir, bulletSpeed360, bulletDamage360);
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -127,14 +148,102 @@ public class Boss : Enemy
         ScheduleNextAttack();
     }
     
-    private void SpawnBullet(Vector2 direction)
+    private void SpawnBullet(Vector2 direction, float spd, float dmg)
     {
         if (bulletPrefab == null) return;
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         BossBullet bb = bullet.GetComponent<BossBullet>();
-        if (bb != null)
-        {
-            bb.Initialize(direction, bulletSpeed360, bulletDamage360);
+        bb.Initialize(direction, spd, dmg);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private IEnumerator Attack_Charge_Jump() {
+        
+        //Charge state
+        bossState = BossState.Attacking;
+        animator.SetBool("isMove", false);
+        sprite.color = Color.red;
+
+        Vector3 attackCenter = target;
+        
+        //Spawn attack indicator
+        GameObject indicatorObject = Instantiate(attackIndicator, attackCenter, Quaternion.identity);
+        AOERangeIndicator indicator = indicatorObject.GetComponent<AOERangeIndicator>();
+        indicator.radius = attackRadius;
+        indicator.autoFade = false;
+        
+        //Charge
+        animator.SetTrigger("attack_charge");
+        yield return new WaitForSeconds(attackDelay);
+        if (bossState == BossState.Dead) {
+            Destroy(indicatorObject); 
+            yield break;
         }
+        
+        //Jump
+        Vector3 pos = transform.position;
+        float time = 0f;
+        while (time < 0.5f) {
+            time += Time.deltaTime;
+            float p = time / 0.5f;
+            transform.position = Vector3.Lerp(pos, pos + Vector3.up * 5f, p);
+            sprite.color = new Color(1f, 0f, 0f, 1f - p * 0.7f);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.2f);
+        animator.SetTrigger("attack_aoe");
+        
+        //Attack
+        
+        Vector3 airPos = transform.position;
+        time = 0f;
+        while (time < 0.3f)
+        {
+            time += Time.deltaTime;
+            float p = time / 0.3f;
+            transform.position = Vector3.Lerp(airPos, attackCenter, p * p);
+            sprite.color = new Color(1f, 0f, 0f, 0.3f + p * 0.7f);
+            yield return null;
+        }
+        
+        Destroy(indicatorObject);
+        transform.position = attackCenter;
+        
+        PlayerState[] players = FindObjectsOfType<PlayerState>();
+        foreach (PlayerState p in players)
+        {
+            if (Vector2.Distance(p.transform.position, attackCenter) <= attackRadius)
+            {
+                PlayerManager.instance.TakeDamage(attackDamage);
+            }
+        }
+
+        time = 0f;
+        while (time < 0.15f)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.4f);
+
+        if (bossState == BossState.Dead) yield break;
+        bossState = BossState.Walking;
+        animator.SetBool("isMove", true);
+        ScheduleNextAttack();
+
     }
 }
