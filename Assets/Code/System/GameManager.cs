@@ -138,10 +138,18 @@ public class GameManager : MonoBehaviour
             PlayerManager.instance.ResetPlayerInBattle();
         }
 
-        // Do not show battle scene HP Bar in the store scene
+        // Shrink HP Bar in the store scene to hide it behind the dialog box
         GameObject hpBar = GameObject.Find("Canvas 1/HPBar");
-        if (hpBar != null)
-            hpBar.SetActive(scene.name != "Store");
+        if (hpBar != null) {
+            RectTransform hpRect = hpBar.GetComponent<RectTransform>();                                                                     
+            if (scene.name == "Store"){
+                hpRect.sizeDelta = new Vector2(250, 30);
+                hpRect.anchoredPosition = new Vector2(0, 5);
+            } else {
+                hpRect.sizeDelta = new Vector2(500, 60);
+                hpRect.anchoredPosition = new Vector2(0, 10);
+            }
+        }
     }
 
     // Enter next level: first time: generate player | reset player position

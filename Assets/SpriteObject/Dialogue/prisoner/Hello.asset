@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Hello
   m_EditorClassIdentifier: 
   dialogues:
-  - Oh, a new guy. Obessed with Gold right? I hope you will quit soon.
-  - Can you do me a favor?
+  - Oh, a new guy. Obessed with Gold right? I hope you will quit chasing riches soon.
+  - Could you do me a favor?
   responses:
   - responseTextTitle: Sure
     dialogueData: {fileID: 11400000, guid: 59f7e0d9c19cd4bfc90282d35da8532b, type: 2}

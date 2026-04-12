@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hello
   m_EditorClassIdentifier: 
   dialogues:
-  - Hello, I am a knight from XXXX. You are new here right?
+  - Hello there, I am a knight and protector of the realm. You are new here right?
   - There is a gym where you can upgrade here. (Increase your HP, Strength, and Speed)
-  - And a spring to heal.
+  - And a spring where you can heal.
   - There is a prisoner near the spring. He seems to know much more about the world
     than I do.
   - Do you have any other questions?
