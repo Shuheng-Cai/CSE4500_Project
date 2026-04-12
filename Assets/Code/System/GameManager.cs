@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         
         if(PlayerManager.instance.player == null) {
             PlayerManager.instance.PlayerGenerate();
-            currentLevel = 5;
+            currentLevel = 1;
         }else {
             currentLevel += 1;
         }
