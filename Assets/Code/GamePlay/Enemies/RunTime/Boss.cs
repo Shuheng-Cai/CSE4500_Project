@@ -43,7 +43,7 @@ public class Boss : Enemy
         {
             Move();
 
-            if (Time.time >= nextAttackTime)
+            if (Time.time >= nextAttackTime && bossState == BossState.Walking)
             {
                 StartCoroutine(Attack_360Bullet());
             }
@@ -65,12 +65,25 @@ public class Boss : Enemy
         base.Die();
     }
     
-    
-    //TODO
     protected override void OnHitEnemy()
     {
-        // Boss hits player but does not die
+        if (bossState != BossState.Walking) return;
+        StartCoroutine(CollisionAttack());
+    }
+    
+    private IEnumerator CollisionAttack()
+    {
+
+        bossState = BossState.Attacking;
+        animator.SetBool("isMove", false);
+        
         animator.SetTrigger("attack_collision");
+        
+        yield return new WaitForSeconds(1f);
+        
+        bossState = BossState.Walking;
+        animator.SetBool("isMove", true);
+        
     }
     
     //Cool Attacks
