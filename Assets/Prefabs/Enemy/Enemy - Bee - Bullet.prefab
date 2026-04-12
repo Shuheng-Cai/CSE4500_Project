@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6282055788296249527}
   - component: {fileID: 7994498990731509083}
   - component: {fileID: 1588995167348106433}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Enemy - Bee - Bullet
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -45,6 +45,7 @@ public class Boss : Enemy
 
             if (Time.time >= nextAttackTime && bossState == BossState.Walking)
             {
+                //Randomly pick an attack
                 StartCoroutine(Attack_360Bullet());
             }
         }
@@ -56,13 +57,28 @@ public class Boss : Enemy
         animator.SetBool("isMove", true);
     }
     
-    protected override void Die()
+    protected override void Die() {
+        
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null) collider.enabled = false;
+        
+        StartCoroutine(BossDeath());
+    }
+    
+    private IEnumerator BossDeath()
     {
-        if (openDoor != null) {
-            Instantiate(openDoor, transform.position, Quaternion.identity);
-        }
+        animator.SetBool("isMove", false);
+        speed = 0;
+        animator.SetTrigger("isDead");
+        yield return new WaitForSeconds(1.9f);
 
+        if (openDoor != null) {
+            Vector3 doorPos = transform.position + Vector3.down * 2f;
+            Instantiate(openDoor, doorPos, Quaternion.identity);
+        }
+        
         base.Die();
+        
     }
     
     protected override void OnHitEnemy()
