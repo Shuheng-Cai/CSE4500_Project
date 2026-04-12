@@ -196,10 +196,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acdce138b06843b7956fbed64b5c3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everyLevelTime: 1
+  everyLevelTime: 2
   bonusSceneRate: 0.25
   battleTimeCounter: 0
   currentLevel: 0
+  isTransitioning: 0
+  bossLevelInterval: 5
 --- !u!4 &870328699
 Transform:
   m_ObjectHideFlags: 0

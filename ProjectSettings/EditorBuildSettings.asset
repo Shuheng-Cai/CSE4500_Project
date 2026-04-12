@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/Bonus.unity
     guid: a33c9f52167845344919ebc1701e6c0b
+  - enabled: 1
+    path: Assets/Scenes/Game/BossFight.unity
+    guid: 88d0eb5698cdb4e4a865f18b04755859
   m_configObjects: {}
