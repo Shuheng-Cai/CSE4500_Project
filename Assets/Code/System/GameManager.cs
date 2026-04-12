@@ -19,7 +19,8 @@ public enum GameState
     Character,
     Store,
     Campsite,
-    Bonus
+    Bonus,
+    BossFight
 }
 
 public class GameManager : MonoBehaviour
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
     public float battleTimeCounter;
     private bool canCountBattleTime;
     public int currentLevel;
+    public bool isTransitioning;
 
     // Method
     private void OnEnable()
@@ -122,10 +124,18 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
+        
+        isTransitioning = false;
+
         if (scene.name == "Battle")
         {
             PlayerManager.instance.ResetPlayerInBattle();
             canCountBattleTime = true;
+        }
+        
+        if (scene.name == "BossFight")
+        {
+            PlayerManager.instance.ResetPlayerInBattle();
         }
 
         // Do not show battle scene HP Bar in the store scene
@@ -137,14 +147,26 @@ public class GameManager : MonoBehaviour
     // Enter next level: first time: generate player | reset player position
     public void EnterNextLevel()
     {
-        if(PlayerManager.instance.player == null)
-        {
+        
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        if(PlayerManager.instance.player == null) {
             PlayerManager.instance.PlayerGenerate();
-            currentLevel = 0;
+            currentLevel = 1;
+        }else {
+            currentLevel += 1;
         }
-        SceneManager.LoadScene("Battle");
-        currentLevel += 1;
-        canCountBattleTime = true;
+        
+        if (IsBossLevel(currentLevel)) {
+            canCountBattleTime = false;
+            currentState = GameState.BossFight;
+            SceneManager.LoadScene("BossFight");
+        }else {
+            SceneManager.LoadScene("Battle");
+                    canCountBattleTime = true;
+        }
+        
     }
 
     public void CharacterChangePage()
@@ -198,4 +220,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("BootScene");
         Destroy(gameObject);
     }
+    
+    public int bossLevelInterval = 5;
+
+    public bool IsBossLevel(int level)
+    {
+        return level > 0 && level % bossLevelInterval == 0;
+    }
+    
 }
