@@ -7,7 +7,8 @@ public class AOERangeIndicator : MonoBehaviour
     public float radius = 3f;
     public float duration = 0.5f;
     public Color color = new Color(1f, 0f, 0f, 0.3f);
-
+    public bool autoFade = true;
+    
     private SpriteRenderer spriteRenderer;
     
     void Start()
@@ -21,8 +22,11 @@ public class AOERangeIndicator : MonoBehaviour
             transform.localScale = new Vector3(scale, scale, 1f);
             
             spriteRenderer.color = color;
+
+            if (autoFade) {
+                StartCoroutine(FadeOut());
+            }
             
-            StartCoroutine(FadeOut());
         }
     }
     

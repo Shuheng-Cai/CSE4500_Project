@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     // Configuration
     public float everyLevelTime;
+    public int Initial_Level = 1;
     public float bonusSceneRate = 1f;
     
     // State Tracking
@@ -161,7 +162,7 @@ public class GameManager : MonoBehaviour
         
         if(PlayerManager.instance.player == null) {
             PlayerManager.instance.PlayerGenerate();
-            currentLevel = 1;
+            currentLevel = Initial_Level;
         }else {
             currentLevel += 1;
         }
