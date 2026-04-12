@@ -38,6 +38,9 @@ public class PlayerManager : MonoBehaviour
     public bool inUpgradeArea = false;
     public bool inHealingArea = false;
 
+    public int itemCount = 5;
+    public GameObject item;
+
     [Header("Player Interact")]
     public DialogueUI dialogueUI;
 
@@ -63,6 +66,11 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         SetDialogueUI();
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            UseItem();
+        }
     }
 
     // Change the character of Player
@@ -180,5 +188,19 @@ public class PlayerManager : MonoBehaviour
     public void SetDialogueUI()
     {
         dialogueUI = DialogueUI.instance;
+    }
+
+    public void ItemAdd()
+    {
+        itemCount++;
+    }
+
+    private void UseItem()
+    {
+        if(itemCount > 0)
+        {
+            itemCount--;
+            Instantiate(item, player.transform.position, Quaternion.identity);
+        }
     }
 }

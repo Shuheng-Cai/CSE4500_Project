@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /*
@@ -8,6 +9,8 @@ using UnityEngine;
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogueData dialogueData;
+    public Action onDialogueStarted;
+    public bool isDialogueActive = true;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,6 +33,11 @@ public class DialogueActivator : MonoBehaviour, IInteractable
 
     public void Interact(PlayerInteract player)
     {
-        PlayerManager.instance.dialogueUI.ShowDialogue(dialogueData);
+        if(isDialogueActive)
+        {
+            PlayerManager.instance.dialogueUI.ShowDialogue(dialogueData);
+            
+        }
+        onDialogueStarted?.Invoke();
     }
 }

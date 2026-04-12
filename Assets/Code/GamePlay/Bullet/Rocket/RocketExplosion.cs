@@ -17,4 +17,11 @@ public class RocketExplosion : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
+
 }
