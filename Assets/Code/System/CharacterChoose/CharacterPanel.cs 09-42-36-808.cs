@@ -1,18 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class CharacterPanel : MonoBehaviour
 {
     public Action<CharacterData> updatePanel;
     public TMP_Text attributeText;
-    public TMP_Text characterName;
     public Image characterImage;
     public Image bulletImage;
+
     private CharacterData thisCharacter;
 
     void OnEnable()
@@ -27,25 +24,35 @@ public class CharacterPanel : MonoBehaviour
 
     public void UpdatePanel(CharacterData data)
     {
-        thisCharacter = data;
-        attributeText.gameObject.SetActive(true);
-        characterImage.gameObject.SetActive(true);
-        bulletImage.gameObject.SetActive(true);
-        characterName.gameObject.SetActive(true);
-        
-        attributeText.text = 
-            $"{data.BaseMaxHealthPoint}\n" +
-            $"{data.BaseSpeed}\n" +
-            $"{data.BaseStrength}";
+        if (data == null) return;
 
-        characterImage.sprite = data.CharacterImage;
-        bulletImage.sprite = data.BulletImage;
-        characterName.text = data.Name;   
+        thisCharacter = data;
+
+        if (attributeText != null) attributeText.gameObject.SetActive(true);
+        if (characterImage != null) characterImage.gameObject.SetActive(true);
+        if (bulletImage != null) bulletImage.gameObject.SetActive(true);
+
+        if (attributeText != null)
+        {
+            attributeText.text =
+                $"{data.BaseMaxHealthPoint}\n" +
+                $"{data.BaseSpeed}\n" +
+                $"{data.BaseStrength}";
+        }
+
+        if (characterImage != null)
+            characterImage.sprite = data.CharacterImage;
+
+        if (bulletImage != null)
+            bulletImage.sprite = data.BulletImage;
     }
 
     public void ButtonClicked()
     {
-        if(thisCharacter == null) return;
+        if (thisCharacter == null) return;
+        if (PlayerManager.instance == null) return;
+        if (GameManager.instance == null) return;
+
         PlayerManager.instance.ChangeCharacter(thisCharacter);
         GameManager.instance.EnterNextLevel();
     }
