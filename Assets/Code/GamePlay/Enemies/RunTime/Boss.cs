@@ -161,7 +161,10 @@ public class Boss : Enemy
     private void SpawnBullet(Vector2 direction, float spd, float dmg)
     {
         if (bulletPrefab == null) return;
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position;
+        pos.z = -1f; 
+
+        GameObject bullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
         BossBullet bb = bullet.GetComponent<BossBullet>();
         bb.Initialize(direction, spd, dmg);
     }
