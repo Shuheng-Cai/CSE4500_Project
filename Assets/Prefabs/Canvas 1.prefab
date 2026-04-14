@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodFill: {fileID: 6900375691819818005}
   barTransform: {fileID: 7390563451652451377}
+  totalSteps: 22
   lowHealthThreshold: 0.25
   shakeAmount: 6
   shakeSpeed: 25
@@ -955,7 +956,7 @@ RectTransform:
   m_GameObject: {fileID: 6658647367963148293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5260886543654439606}
@@ -964,11 +965,11 @@ RectTransform:
   - {fileID: 8553421777432245638}
   m_Father: {fileID: 657477780146446132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -222, y: 132}
-  m_SizeDelta: {x: 228.1, y: 100.9}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 228.1, y: 100.899994}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &8604313739848062850
 CanvasRenderer:
   m_ObjectHideFlags: 0
