@@ -199,16 +199,16 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2404814332275580447, guid: 9a219fc0e30654343bbb641234f65037, type: 3}
   bulletCount360: 25
   bulletSpeed360: 10
-  bulletDamage360: 20
+  bulletDamage360Multiplier: 0.5
   attackIndicator: {fileID: 3833909079344510805, guid: 25f60f462e3dfa540a42d331a2d58ad9, type: 3}
   attackDelay: 1.5
   attackRadius: 9
-  attackDamage: 70
+  attackDamageMultiplier: 1.5
   bulletDegree: 20
   bulletCountFan: 7
   bulletSpeedFan: 10
-  bulletDamageFan: 20
+  bulletDamageFanMultiplier: 0.5
   burstSpeed: 20
   burstDuration: 1
-  burstDamage: 30
+  burstDamageMultiplier: 1
   burstDelay: 1.8
