@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   enemyID: 0
-  speed: 3
-  maxHealth: 1500
-  damage: 35
+  speed: 4
+  maxHealth: 3000
+  damage: 50
   enemyPrefab: {fileID: 7663493155607065391, guid: b0695d1dde24f6a42980a4dad4ef4292, type: 3}
   baseWeight: 0
   updateWave: 0

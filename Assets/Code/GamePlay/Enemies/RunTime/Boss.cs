@@ -21,24 +21,24 @@ public class Boss : Enemy
     public GameObject bulletPrefab;
     public int bulletCount360 = 36;
     public float bulletSpeed360 = 5f;
-    public float bulletDamage360 = 10f;
+    public float bulletDamage360Multiplier = 0.8f;
 
     [Header("Attack 2: Charge and Jump")] 
     public GameObject attackIndicator;
     public float attackDelay;
     public float attackRadius;
-    public float attackDamage;
+    public float attackDamageMultiplier = 1.4f;
 
     [Header("Attack 3: Fan Bullet")] 
     public float bulletDegree = 30;
     public int bulletCountFan = 36;
     public float bulletSpeedFan = 5f;
-    public float bulletDamageFan = 10f;
+    public float bulletDamageFanMultiplier = 0.8f;
     
     [Header("Attack 4: Burst")] 
     public float burstSpeed = 18f;
     public float burstDuration = 2f;
-    public float burstDamage = 30f;
+    public float burstDamageMultiplier = 1f;
     public float burstDelay = 1.5f;
     
     protected override void Awake()
@@ -68,16 +68,36 @@ public class Boss : Enemy
                 int choice = Random.Range(0, 4);
                 switch (choice) {
                     case 0:
-                        StartCoroutine(Attack_360Bullet());
+                        if (currentHealth <= maxBossHP * 0.5f) {
+                            StartCoroutine(Attack_360Bullet(true));
+                        }else {
+                            StartCoroutine(Attack_360Bullet(false));
+                        }
+
                         break;
                     case 1:
-                        StartCoroutine(Attack_ChargeJump());
+                        if (currentHealth <= maxBossHP * 0.5f) {
+                            StartCoroutine(Attack_ChargeJump(true));
+                        }else {
+                            StartCoroutine(Attack_ChargeJump(false));
+                        }
                         break;
                     case 2:
-                        StartCoroutine(Attack_FanBullet());
+
+                        if (currentHealth <= maxBossHP * 0.5f) {
+                            StartCoroutine(Attack_FanBullet(true));
+                        }else {
+                            StartCoroutine(Attack_FanBullet(false));
+                        }
                         break;
                     case 3:
-                        StartCoroutine(Attack_Burst());
+                        if (currentHealth <= maxBossHP * 0.5f) {
+                            StartCoroutine(Attack_Burst(true));
+                        }
+                        else {
+                            StartCoroutine(Attack_Burst(false));
+                        }
+                        
                         break;
                 }
             }
@@ -135,8 +155,7 @@ public class Boss : Enemy
     
     //=======================================================================================
     
-    private IEnumerator Attack_360Bullet()
-    {
+    private IEnumerator Attack_360Bullet(bool second) {
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
         animator.SetTrigger("attack_360");
@@ -148,13 +167,18 @@ public class Boss : Enemy
         {
             float angle = i * smallAngle * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            SpawnBullet(dir, bulletSpeed360, bulletDamage360);
+            SpawnBullet(dir, bulletSpeed360, damage * bulletDamage360Multiplier);
         }
 
         yield return new WaitForSeconds(0.5f);
 
         bossState = BossState.Walking;
         animator.SetBool("isMove", true);
+
+        if (second) {
+            StartCoroutine(Attack_FanBullet(false));
+        }
+        
         ScheduleNextAttack();
     }
     
@@ -171,11 +195,12 @@ public class Boss : Enemy
 
     //=======================================================================================
 
-    private IEnumerator Attack_ChargeJump() {
+    private IEnumerator Attack_ChargeJump(bool second) {
         
         //Charge state
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
+        animator.SetTrigger("attack_charge");
         sprite.color = Color.red;
 
         Vector3 attackCenter = target;
@@ -187,7 +212,7 @@ public class Boss : Enemy
         indicator.autoFade = false;
         
         //Charge
-        animator.SetTrigger("attack_charge");
+        
         yield return new WaitForSeconds(attackDelay);
         if (bossState == BossState.Dead) {
             Destroy(indicatorObject); 
@@ -228,23 +253,34 @@ public class Boss : Enemy
         {
             if (Vector2.Distance(p.transform.position, attackCenter) <= attackRadius)
             {
-                PlayerManager.instance.TakeDamage(attackDamage);
+                PlayerManager.instance.TakeDamage(damage * attackDamageMultiplier);
             }
         }
 
         sprite.color = Color.white;
+        
+        if (second) {
+            float smallAngle = 360f / bulletCount360;
+            for (int i = 0; i < bulletCount360; i++) {
+                float angle = i * smallAngle * Mathf.Deg2Rad;
+                Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                SpawnBullet(dir, bulletSpeed360, damage * bulletDamage360Multiplier);
+            }
+        }
+        
         yield return new WaitForSeconds(0.4f);
 
         if (bossState == BossState.Dead) yield break;
         bossState = BossState.Walking;
         animator.SetBool("isMove", true);
+        
         ScheduleNextAttack();
 
     }
     
     //=======================================================================================
 
-    private IEnumerator Attack_FanBullet() {
+    private IEnumerator Attack_FanBullet(bool second) {
         
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
@@ -261,10 +297,14 @@ public class Boss : Enemy
         {
             float angle = (baseAngle - halfAngle + smallAngle * i) * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            SpawnBullet(dir, bulletSpeedFan, bulletDamageFan);
+            SpawnBullet(dir, bulletSpeedFan, damage * bulletDamageFanMultiplier);
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        if (second) {
+            yield return StartCoroutine(Attack_FanBullet(false));
+        }
 
         bossState = BossState.Walking;
         animator.SetBool("isMove", true);
@@ -273,9 +313,10 @@ public class Boss : Enemy
     
     //=======================================================================================
 
-    private IEnumerator Attack_Burst() {
+    private IEnumerator Attack_Burst(bool second) {
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
+        animator.SetTrigger("Still");
         sprite.color = Color.red;
         Vector2 attackTarget = (target - transform.position).normalized;
         
@@ -298,7 +339,7 @@ public class Boss : Enemy
                 {
                     if (Vector2.Distance(transform.position, p.transform.position) < 1.5f)
                     {
-                        PlayerManager.instance.TakeDamage(burstDamage);
+                        PlayerManager.instance.TakeDamage(damage * burstDamageMultiplier);
                         hasHit = true;
                         break;
                     }
@@ -311,6 +352,10 @@ public class Boss : Enemy
         animator.SetBool("isBurst", false);
         animator.SetTrigger("EndBurst");
         yield return new WaitForSeconds(0.5f);
+
+        if (second) {
+            yield return StartCoroutine(Attack_Burst(false));
+        }
 
         if (bossState == BossState.Dead) yield break;
         bossState = BossState.Walking;
