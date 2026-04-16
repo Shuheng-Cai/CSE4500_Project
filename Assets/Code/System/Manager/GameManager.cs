@@ -153,6 +153,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void EnterBossLevel()
+    {
+        if (isTransitioning) return;
+
+        if(PlayerManager.instance.player == null) {
+            PlayerManager.instance.PlayerGenerate();
+        }
+        PlayerManager.instance.ResetPlayerInBattle();
+        isTransitioning = true;
+        currentState = GameState.BossFight;
+        SceneManager.LoadScene("BossFight");
+    }
+
+
     // Enter next level: first time: generate player | reset player position
     public void EnterNextLevel()
     {

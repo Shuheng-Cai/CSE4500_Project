@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DialogueData dialogueData;
+    [SerializeField] public DialogueData dialogueData;
     public Action onDialogueStarted;
     public bool isDialogueActive = true;
 

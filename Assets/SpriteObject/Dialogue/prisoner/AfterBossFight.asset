@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 309512c668d9e5c4fbfd9013e28f380d, type: 3}
-  m_Name: Reply1 - Agree
+  m_Name: AfterBossFight
   m_EditorClassIdentifier: 
   dialogues:
-  - Kill the BOSS in LEVEL 5 !!!!!!! I think you can do this!
+  - You did it. I feel I am released. We will meet soon.........
   responses: []

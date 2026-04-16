@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2404814332275580447
+--- !u!1 &150670822858483781
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5255531580379859468}
-  - component: {fileID: 5156221460423333841}
-  - component: {fileID: 1167879219113593558}
-  - component: {fileID: 7696737006002677588}
-  m_Layer: 8
-  m_Name: Enemy - BossBullet
+  - component: {fileID: 1809323181287220437}
+  - component: {fileID: 6412201590360199365}
+  - component: {fileID: 8968517815409096632}
+  - component: {fileID: 1086146893748582389}
+  - component: {fileID: 3570745142522769735}
+  m_Layer: 0
+  m_Name: BlueCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5255531580379859468
+--- !u!4 &1809323181287220437
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2404814332275580447}
+  m_GameObject: {fileID: 150670822858483781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalPosition: {x: -5.03, y: -1.62, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5156221460423333841
+--- !u!212 &6412201590360199365
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2404814332275580447}
+  m_GameObject: {fileID: 150670822858483781}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,27 +73,48 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1545553503
-  m_SortingLayer: 4
+  m_SortingLayerID: 696217517
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7402876982822819489, guid: dfa7628b31e2a4b0ab5324ecf14630fd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -610029123, guid: cd028cf7ea3284615bb7fd5488902912, type: 3}
+  m_Color: {r: 0.11012411, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.13}
+  m_Size: {x: 4.265625, y: 4.265625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1167879219113593558
-CircleCollider2D:
+--- !u!95 &8968517815409096632
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2404814332275580447}
+  m_GameObject: {fileID: 150670822858483781}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00c63fa9be1d54f1aa39ec5867936396, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &1086146893748582389
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150670822858483781}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -115,23 +137,22 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.06499999
---- !u!114 &7696737006002677588
+  m_Size: {x: 0.36400002, y: 0.36400002}
+  m_Direction: 0
+--- !u!114 &3570745142522769735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2404814332275580447}
+  m_GameObject: {fileID: 150670822858483781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec87ae599a0334849835b045e3cf4859, type: 3}
+  m_Script: {fileID: 11500000, guid: 96ee6f86e87bc1841a317a54689951c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
-  speed: 5
+  coinData: {fileID: 11400000, guid: 11b3d6a9f1c0d1149ba67dea88145b6a, type: 2}

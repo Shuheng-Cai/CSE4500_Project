@@ -6760,6 +6760,7 @@ GameObject:
   - component: {fileID: 1107343602}
   - component: {fileID: 1107343601}
   - component: {fileID: 1107343603}
+  - component: {fileID: 1107343604}
   m_Layer: 0
   m_Name: NPC - knight
   m_TagString: Interactable
@@ -6911,6 +6912,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1107343604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107343598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c28e514ad1efff4380fe43f2087b281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterBossFight: {fileID: 0}
 --- !u!1 &1168193216
 GameObject:
   m_ObjectHideFlags: 0
@@ -7633,6 +7647,7 @@ GameObject:
   - component: {fileID: 1608185788}
   - component: {fileID: 1608185787}
   - component: {fileID: 1608185789}
+  - component: {fileID: 1608185790}
   m_Layer: 0
   m_Name: NPC - Prisoner
   m_TagString: Interactable
@@ -7798,6 +7813,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1608185790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608185783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c28e514ad1efff4380fe43f2087b281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterBossFight: {fileID: 11400000, guid: 08836dfaf00ddd54d8c724bdefbf37f7, type: 2}
 --- !u!1 &1614876325
 GameObject:
   m_ObjectHideFlags: 0

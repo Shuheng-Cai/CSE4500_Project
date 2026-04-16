@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
 
     // Outlet
     public CharacterData currentCharacter;
+    public CharacterData defaultCharacterData;
     public GameObject playerPrefab;
 
     // Make it List
@@ -44,6 +45,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Interact")]
     public DialogueUI dialogueUI;
 
+    public bool isBossFight = false;
     // Method
     // Subscribe Event
     void OnEnable()
@@ -62,6 +64,15 @@ public class PlayerManager : MonoBehaviour
     {
         instance = this;
     }
+
+    void Start()
+    {
+        if (defaultCharacterData != null)
+        {
+            ChangeCharacter(defaultCharacterData);
+        }
+    }
+
 
     void Update()
     {
@@ -197,7 +208,7 @@ public class PlayerManager : MonoBehaviour
 
     private void UseItem()
     {
-        if(itemCount > 0)
+        if(itemCount > 0 && canShoot)
         {
             itemCount--;
             Instantiate(item, player.transform.position, Quaternion.identity);

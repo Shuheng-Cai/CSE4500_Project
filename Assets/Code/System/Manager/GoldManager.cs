@@ -37,6 +37,7 @@ public class GoldManager : MonoBehaviour
     public void AddCoin(float value)
     {
         currentGold += value;
+        PointManager.instance.AddPoints(value);
     }
 
     // If player have enough coin, we can cost. TODO: if coin no enough, invoke a screen shake? or a conversation
@@ -45,6 +46,7 @@ public class GoldManager : MonoBehaviour
         if(currentGold > value)
         {
             currentGold -= value;
+            PointManager.instance.AddPoints(value);
             return true;
         }
 

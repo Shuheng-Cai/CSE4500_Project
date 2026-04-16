@@ -115,7 +115,7 @@ public class Boss : Enemy
         bossState = BossState.Dead;
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
-        
+        PlayerManager.instance.isBossFight = true;
         StartCoroutine(BossDie());
     }
     
