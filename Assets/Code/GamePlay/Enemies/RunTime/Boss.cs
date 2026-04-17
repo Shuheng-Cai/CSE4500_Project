@@ -124,10 +124,11 @@ public class Boss : Enemy
         animator.SetBool("isMove", false);
         speed = 0;
         animator.SetTrigger("isDead");
+        BossSounndManager.instance.PlayRoarSound();
         yield return new WaitForSeconds(1.9f);
 
         if (openDoor != null) {
-            Vector3 doorPos = transform.position + Vector3.down * 2f;
+            Vector3 doorPos = new Vector3(transform.position.x, transform.position.y - 2f, -1f);
             Instantiate(openDoor, doorPos, Quaternion.identity);
         }
         
@@ -145,6 +146,7 @@ public class Boss : Enemy
         animator.SetBool("isMove", false);
         
         animator.SetTrigger("attack_collision");
+        BossSounndManager.instance.PlaySmallHitSound();
         
         yield return new WaitForSeconds(1f);
         
@@ -159,9 +161,11 @@ public class Boss : Enemy
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
         animator.SetTrigger("attack_360");
+        BossSounndManager.instance.PlayLargeHitSound();
+        BossSounndManager.instance.PlayFireballSound();
 
         yield return new WaitForSeconds(0.7f);
-
+        
         float smallAngle = 360f / bulletCount360;
         for (int i = 0; i < bulletCount360; i++)
         {
@@ -201,6 +205,7 @@ public class Boss : Enemy
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
         animator.SetTrigger("attack_charge");
+        BossSounndManager.instance.PlayChargeSound();
         sprite.color = Color.red;
 
         Vector3 attackCenter = target;
@@ -245,6 +250,7 @@ public class Boss : Enemy
             yield return null;
         }
         
+        BossSounndManager.instance.PlayExplosionSound();
         Destroy(indicatorObject);
         transform.position = attackCenter;
         
@@ -260,6 +266,7 @@ public class Boss : Enemy
         sprite.color = Color.white;
         
         if (second) {
+            BossSounndManager.instance.PlayFireballSound();
             float smallAngle = 360f / bulletCount360;
             for (int i = 0; i < bulletCount360; i++) {
                 float angle = i * smallAngle * Mathf.Deg2Rad;
@@ -285,6 +292,8 @@ public class Boss : Enemy
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
         animator.SetTrigger("attack_fan");
+        BossSounndManager.instance.PlaySmallHitSound();
+        BossSounndManager.instance.PlayFireballSound();
 
         yield return new WaitForSeconds(0.5f);
         
@@ -317,12 +326,14 @@ public class Boss : Enemy
         bossState = BossState.Attacking;
         animator.SetBool("isMove", false);
         animator.SetTrigger("Still");
+        BossSounndManager.instance.PlayChargeSound();
         sprite.color = Color.red;
         Vector2 attackTarget = (target - transform.position).normalized;
         
         yield return new WaitForSeconds(burstDelay);
         sprite.color = Color.white;
         animator.SetBool("isBurst", true);
+        BossSounndManager.instance.PlaySpinningSound();
         
         float time = 0f;
         bool hasHit = false;
