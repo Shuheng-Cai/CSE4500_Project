@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
         EnterMainMenu();
     }
 
+    void Update()
+    {
+        QuitToMainMenu();
+    }
+
     void FixedUpdate()
     {
         if (canCountBattleTime)
@@ -69,7 +74,6 @@ public class GameManager : MonoBehaviour
             StartBattleTimer();
             currentState = GameState.Battle;
         }
-        
     }
 
     // When Enter the main menu
@@ -249,6 +253,18 @@ public class GameManager : MonoBehaviour
     public bool IsBossLevel(int level)
     {
         return level > 0 && level % bossLevelInterval == 0;
+    }
+
+    public void QuitToMainMenu()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            StopAllCoroutines();
+            CancelInvoke();
+            Destroy(PlayerManager.instance.player);
+            SceneManager.LoadScene("BootScene");
+            Destroy(gameObject);
+        }
     }
     
 }

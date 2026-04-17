@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: JACK
   m_EditorClassIdentifier: 
   CharacterAnimController: {fileID: 9100000, guid: 941e22cb37bb849928bd484935dddbc6, type: 2}
-  BaseSpeed: 10
-  BaseMaxHealthPoint: 100
-  BaseStrength: 1
+  BaseSpeed: 15
+  BaseMaxHealthPoint: 90
+  BaseStrength: 1.2
   StartCoin: 6
   BaseBullet: {fileID: 11400000, guid: 6c5b6ee650b8e0743994fb9e810b6225, type: 2}
   CharacterImage: {fileID: 943453682, guid: 374d8285dd1514ce2a8be58203e6206d, type: 3}

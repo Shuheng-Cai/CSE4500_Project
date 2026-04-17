@@ -16,6 +16,6 @@ public class Bomb_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textMeshPro.text = $"Bomb: {PlayerManager.instance.itemCount}";
+        textMeshPro.text = $"{PlayerManager.instance.itemCount}";
     }
 }

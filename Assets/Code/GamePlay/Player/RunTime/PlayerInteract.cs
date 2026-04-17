@@ -10,6 +10,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public IInteractable interactable {get; set;}
+    private bool isDialogue = false;
 
     // Update is called once per frame
     void Update()
@@ -19,10 +20,16 @@ public class PlayerInteract : MonoBehaviour
 
     public void Interact()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !isDialogue)
         {
             Debug.Log(1);
+            isDialogue = true;
             interactable?.Interact(this);  
+        }
+
+        if(interactable == null)
+        {
+            isDialogue = false;
         }
     }
 }

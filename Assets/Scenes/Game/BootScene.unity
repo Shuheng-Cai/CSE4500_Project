@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCharacter: {fileID: 11400000, guid: 0401f24811154644582d9629f8d055e5, type: 2}
-  defaultCharacterData: {fileID: 11400000, guid: 0401f24811154644582d9629f8d055e5, type: 2}
+  defaultCharacterData: {fileID: 11400000, guid: b8d55510961054557a873b25ee6a7a6d, type: 2}
   playerPrefab: {fileID: 1709417532716060746, guid: f0f0b7ca970fa482e9e2228f649d3d19, type: 3}
   currentNormalBullets: []
   currentLasers: []
