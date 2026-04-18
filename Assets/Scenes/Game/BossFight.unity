@@ -1027,7 +1027,7 @@ MonoBehaviour:
   fireballSound: {fileID: 8300000, guid: a3550cbbe6fed8c4f94e4c2ba36180cc, type: 3}
   smallHitSound: {fileID: 8300000, guid: ac1cedf73c96d78418994bc82827d6eb, type: 3}
   largeHitSound: {fileID: 8300000, guid: a3bf85062dc7f504eb3d3286acf14012, type: 3}
-  explosionSound: {fileID: 8300000, guid: cd8171a3b0972d14ca882e96aa8c7027, type: 3}
+  explosionSound: {fileID: 8300000, guid: 50aeabca93f104b47a8d35f8a096bbca, type: 3}
   spinningSound: {fileID: 8300000, guid: 3482fce1bcf2a8c448782a9d1c26cbfb, type: 3}
   chargeSound: {fileID: 8300000, guid: 3f08f194e5a659740a472dbf7debd564, type: 3}
   roarSound: {fileID: 8300000, guid: 08abd780e8abcbe4db85222d334f28aa, type: 3}
