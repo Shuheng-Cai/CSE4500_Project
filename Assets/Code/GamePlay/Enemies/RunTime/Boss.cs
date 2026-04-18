@@ -113,6 +113,9 @@ public class Boss : Enemy
     protected override void Die() {
 
         bossState = BossState.Dead;
+        
+        StopAllCoroutines();
+        
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
         PlayerManager.instance.isBossFight = true;
@@ -122,16 +125,27 @@ public class Boss : Enemy
     private IEnumerator BossDie() {
         
         animator.SetBool("isMove", false);
+        animator.SetBool("isBurst", false);
+    
         speed = 0;
+        
+        animator.ResetTrigger("attack_360");
+        animator.ResetTrigger("attack_charge");
+        animator.ResetTrigger("attack_aoe");
+        animator.ResetTrigger("attack_fan");
+        animator.ResetTrigger("Still");
+        animator.ResetTrigger("EndBurst");
+    
         animator.SetTrigger("isDead");
         BossSounndManager.instance.PlayRoarSound();
+    
         yield return new WaitForSeconds(1.9f);
 
         if (openDoor != null) {
             Vector3 doorPos = new Vector3(transform.position.x, transform.position.y - 2f, -1f);
             Instantiate(openDoor, doorPos, Quaternion.identity);
         }
-        
+    
         base.Die();
     }
     

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ANDY 1
   m_EditorClassIdentifier: 
   CharacterAnimController: {fileID: 9100000, guid: f4fc946ac45793b43bf75776ba816675, type: 2}
-  BaseSpeed: 20
+  BaseSpeed: 15
   BaseMaxHealthPoint: 10000
-  BaseStrength: 5
+  BaseStrength: 3
   StartCoin: 15
   BaseBullet: {fileID: 11400000, guid: dc868a3830f34476abe12d101aa812c9, type: 2}
   CharacterImage: {fileID: -1316633256, guid: fd6f448bc18e6864bb8cd8a66735d986, type: 3}
