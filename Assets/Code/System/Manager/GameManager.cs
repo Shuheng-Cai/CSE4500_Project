@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)) 
+        if(Input.GetKeyDown(KeyCode.Q)) 
         {
             StopAllCoroutines();
             CancelInvoke();
