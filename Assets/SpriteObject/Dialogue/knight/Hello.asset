@@ -18,6 +18,7 @@ MonoBehaviour:
   - And a spring where you can heal.
   - There is a prisoner near the spring. He seems to know much more about the world
     than I do.
+  - And you can buy bomb from the Fox.
   - Do you have any other questions?
   responses:
   - responseTextTitle: Who are you

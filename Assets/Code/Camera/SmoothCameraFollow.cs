@@ -30,7 +30,7 @@ public class SmoothCameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (PlayerManager.instance.playerAlive)
+        if (PlayerManager.instance.playerAlive && _Follow != null)
         {
             var target = new Vector3(_Follow.position.x, _Follow.position.y, transform.position.z);
             transform.position = Vector3.Lerp(

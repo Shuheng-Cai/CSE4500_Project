@@ -262,8 +262,9 @@ public class GameManager : MonoBehaviour
             StopAllCoroutines();
             CancelInvoke();
             Destroy(PlayerManager.instance.player);
-            SceneManager.LoadScene("BootScene");
+            PlayerManager.instance.playerAlive = false;
             Destroy(gameObject);
+            SceneManager.LoadScene("BootScene");
         }
     }
     
