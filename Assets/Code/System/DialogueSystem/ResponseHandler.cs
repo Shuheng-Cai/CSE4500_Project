@@ -50,6 +50,6 @@ public class ResponseHandler : MonoBehaviour
 
         tempResponseButtons.Clear();
 
-        dialogueUI.ShowDialogue(response.DialogueData);
+        dialogueUI.ShowDialogue(response.DialogueData, response.Name);
     }
 }

@@ -11,6 +11,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     [SerializeField] public DialogueData dialogueData;
     public Action onDialogueStarted;
     public bool isDialogueActive = true;
+    public string nameText;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,7 +36,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     {
         if(isDialogueActive)
         {
-            PlayerManager.instance.dialogueUI.ShowDialogue(dialogueData);
+            PlayerManager.instance.dialogueUI.ShowDialogue(dialogueData, nameText);
             
         }
         onDialogueStarted?.Invoke();

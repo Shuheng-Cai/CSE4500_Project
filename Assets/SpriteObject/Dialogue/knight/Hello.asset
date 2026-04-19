@@ -23,5 +23,7 @@ MonoBehaviour:
   responses:
   - responseTextTitle: Who are you
     dialogueData: {fileID: 11400000, guid: 9f2d1c4caf8f44f47b1ffc5f7ddfef68, type: 2}
+    name: Knight
   - responseTextTitle: No
     dialogueData: {fileID: 11400000, guid: 0a87b886a6da3468d96436d1ba3666c6, type: 2}
+    name: Knight

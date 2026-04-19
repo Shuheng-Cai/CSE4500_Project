@@ -27,6 +27,8 @@ public class EnemySpawn : MonoBehaviour
     float spawnRadius;
     float innerR, outerR;
 
+    int currentLevel;
+
     // Method
     void Start()
     {
@@ -42,7 +44,11 @@ public class EnemySpawn : MonoBehaviour
 
     void Update()
     {
-
+        if (GameManager.instance.currentLevel != currentLevel)
+        {
+            currentLevel = GameManager.instance.currentLevel;
+            UpdateSpawnTime();
+        }
     }
 
     // Random point
@@ -61,5 +67,10 @@ public class EnemySpawn : MonoBehaviour
         Instantiate(enemies[enemyID], RandomPointInCircle(), Quaternion.identity);
         yield return new WaitForSeconds(spawnTime);
         StartCoroutine(SpawnEnemy());
+    }
+
+    private void UpdateSpawnTime()
+    {
+        spawnTime = Mathf.Max(0.01f, 1f - (GameManager.instance.currentLevel - 1) * 0.1f);
     }
 }

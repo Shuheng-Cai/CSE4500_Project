@@ -7,6 +7,7 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel; 
+    [SerializeField] private TMP_Text nameLabel;
     [SerializeField] private DialogueData testDialogue;
 
     public static DialogueUI instance;
@@ -25,11 +26,17 @@ public class DialogueUI : MonoBehaviour
         instance = this;
     }
 
-    public void ShowDialogue(DialogueData dialogueData)
+    public void ShowDialogue(DialogueData dialogueData, string name)
     {
         isOpen = true;
         dialogueBox.SetActive(true);
+        ShowName(name);
         StartCoroutine(StepThroughDialogue(dialogueData));
+    }
+
+    public void ShowName(string name)
+    {
+        nameLabel.text = name;
     }
 
     public void ShowDialogue(string[] dialogues)
