@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acdce138b06843b7956fbed64b5c3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  everyLevelTime: 5
+  everyLevelTime: 60
   Initial_Level: 1
   bonusSceneRate: 0.25
   battleTimeCounter: 0
