@@ -15,6 +15,9 @@ public static class GameEvent
     // Where the enemy die.
     public static Action<Vector3> OnDieEnemy;
 
+    // Type name of the enemy that just died (e.g. "Pig", "Bunny").
+    public static Action<string> OnEnemyKilled;
+
     // Upgrade Event
     public static Action OnPlayerUpgrade;
     public static Action<AttributeUpgradeType> OnPlayerUpgradeUI;

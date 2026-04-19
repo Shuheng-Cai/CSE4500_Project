@@ -89,6 +89,7 @@ public abstract class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         GameEvent.OnDieEnemy?.Invoke(transform.position);
+        GameEvent.OnEnemyKilled?.Invoke(GetType().Name);
     }
 
     protected virtual void FaceDir()
