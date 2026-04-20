@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SmallMushroom
   m_EditorClassIdentifier: 
   enemyID: 0
-  speed: 1
-  maxHealth: 25
+  speed: 2
+  maxHealth: 300
   damage: 5
   enemyPrefab: {fileID: 4745737064178577861, guid: 41f92940b6b12c94286dd57eb908b7c8, type: 3}
   baseWeight: 0
