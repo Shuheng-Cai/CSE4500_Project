@@ -37,7 +37,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable {
         }
 
         string[] dialogues = new string[] {
-            "Looks like you have " + GoldManager.instance.currentGold + " coins collected!",
+            "Looks like you have " + PointManager.instance.Points + " points collected!",
             "Return to the store area by following the stone path that leads up and away from this campsite.",
             "There you'll be able to put your hard-earned coins to use."
         };
