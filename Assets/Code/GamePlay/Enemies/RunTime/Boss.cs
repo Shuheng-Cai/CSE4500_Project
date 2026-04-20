@@ -9,6 +9,7 @@ public class Boss : Enemy
     public GameObject openDoor;
     
     public float maxBossHP;
+    public bool below50 = false;
     
     public float minAttackInterval = 5f;
     public float maxAttackInterval = 8f;
@@ -57,6 +58,12 @@ public class Boss : Enemy
         if (!PlayerManager.instance.playerAlive) return;
         ChooseNearestPlayer();
         FaceDir();
+
+        if (!below50 && currentHealth <= maxBossHP * 0.5f) {
+            below50 = true;
+            animator.SetTrigger("below50");
+            StartCoroutine(below50Animation());
+        }
         
         if (bossState == BossState.Walking)
         {
@@ -103,6 +110,26 @@ public class Boss : Enemy
             }
         }
     }
+
+    private IEnumerator below50Animation() {
+        sprite.color = Color.red;
+        bossState = BossState.Attacking;
+        animator.SetBool("isMove", false);
+        animator.SetBool("isBurst", false);
+        
+        animator.ResetTrigger("attack_360");
+        animator.ResetTrigger("attack_charge");
+        animator.ResetTrigger("attack_aoe");
+        animator.ResetTrigger("attack_fan");
+        animator.ResetTrigger("Still");
+        animator.ResetTrigger("EndBurst");
+        
+        yield return new WaitForSeconds(1.5f);
+        
+        sprite.color = Color.white;
+        bossState = BossState.Walking;
+        animator.SetBool("isMove", true);
+    }
     
     protected override void Move() {
         Vector3 direction = (target - transform.position).normalized;
@@ -126,8 +153,6 @@ public class Boss : Enemy
         
         animator.SetBool("isMove", false);
         animator.SetBool("isBurst", false);
-    
-        speed = 0;
         
         animator.ResetTrigger("attack_360");
         animator.ResetTrigger("attack_charge");

@@ -194,8 +194,9 @@ MonoBehaviour:
   invulnerable: 0
   openDoor: {fileID: 8406620180072283058, guid: de19b31c6b68d0e43823ddbfcd077354, type: 3}
   maxBossHP: 0
+  below50: 0
   minAttackInterval: 2
-  maxAttackInterval: 5
+  maxAttackInterval: 5.5
   bulletPrefab: {fileID: 2404814332275580447, guid: 9a219fc0e30654343bbb641234f65037, type: 3}
   bulletCount360: 25
   bulletSpeed360: 10
